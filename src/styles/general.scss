@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid|Raleway&display=swap');
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html {
+   font-size: 62.5%;
+}
+
+body {
+   font-size: 1.6rem;
+   font-family: 'Raleway', sans-serif;
+}
+
+// Sticky footer
+html, body, #root {
+   height: 100%;
+}
+
+.App {
+   display: flex;
+   min-height: 100%;
+   flex-direction: column;
+}
+
+footer {
+   margin-top: auto;
+}
+
+// End Sticky footer
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+   font-family: 'Londrina Solid', cursive;
+   letter-spacing: 0.2rem;
+}
+
+.h1,
+h1 {
+   font-size: 3.6rem;
+}
+
+.h2,
+h2 {
+   font-size: 3rem;
+}
+
+.h3,
+h3 {
+   font-size: 2.5rem;
+}
+
+.h4,
+h4 {
+   font-size: 2rem;
+}
+
+.h5,
+h5 {
+   font-size: 1.75rem;
+}
+
+a {
+   text-decoration: none;
+}
+
+img {
+   max-width: 100%;
+}
+
+p {
+   line-height: 2.5rem;
+}
+
+.container {
+   max-width: 1800px;
+   width: 100%;
+   padding: 0 2rem;
+   margin: auto;
+}
+
+.medium-container {
+   max-width: 1000px;
+   width: 100%;
+   margin: auto;
+   padding: 0 2rem;
+}
+
+.flex-parent {
+   display: flex;
+}

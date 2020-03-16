@@ -1,0 +1,22 @@
+header {
+
+   padding: 1rem 0;
+
+   .logo {
+      width: 6rem;
+   }
+
+   .header-content {
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   nav {
+
+      li {
+         list-style-type: none;
+         display: inline-block;
+         padding: 0.5rem 2rem;
+      }
+   }
+}
