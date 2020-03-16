@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-function addSteps() {
+function AddSteps() {
 
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
@@ -44,4 +44,4 @@ function addSteps() {
 	)
 }
 
-export default addSteps;
+export default AddSteps;

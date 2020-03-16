@@ -13,7 +13,7 @@ import Register from './components/forms/Register';
 import PrivateRoute from './protected/PrivateRoute';
 import AddRecipe from './components/recipe/AddRecipe';
 import RecipeDetails from './components/recipe/RecipeDetails';
-import addSteps from './components/recipe/addSteps';
+import AddSteps from './components/recipe/addSteps';
 
 // Fontawesome icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -36,7 +36,7 @@ function App() {
 			<Route path='/add-recipe' component={AddRecipe} />
 			<PrivateRoute path='/recipe/:id/details' component={RecipeDetails} />
 			<PrivateRoute path='/add-ingredients' component={AddIngredients} />
-			<PrivateRoute path='/add-steps' component={addSteps} />
+			<PrivateRoute path='/add-steps' component={AddSteps} />
 			<Footer />
 		</div>
 	)
