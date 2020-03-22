@@ -13,7 +13,7 @@ import Register from './components/forms/Register';
 import PrivateRoute from './protected/PrivateRoute';
 import AddRecipe from './components/recipe/AddRecipe';
 import RecipeDetails from './components/recipe/RecipeDetails';
-import AddSteps from './components/recipe/addSteps';
+import AddSteps from './components/recipe/AddSteps';
 
 // Fontawesome icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
