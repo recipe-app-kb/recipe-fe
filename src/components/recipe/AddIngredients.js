@@ -54,6 +54,7 @@ function AddIngredients(props) {
 	function goToSteps() {
 		props.history.push('/add-steps');
 	}
+
 	return (
 		<div>
 			<div className="container">
@@ -93,7 +94,7 @@ function AddIngredients(props) {
 
 					</div>
 				</section>
-				<Button>Save</Button>
+				<Button onClick={goToSteps}>Save</Button>
 			</div>
 		</div >
 	)

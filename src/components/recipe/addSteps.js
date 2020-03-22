@@ -1,13 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { addStepToRecipe } from '../../redux/actions/step-actions';
 
-function AddSteps() {
+function AddSteps(props) {
+	const { addStepToRecipe, addedRecipe } = props;
 
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
-		instruciton: ""
+		instruction: ""
 	})
+
+	function handleChange(e) {
+		setUserInput({
+			...userInput,
+			[e.target.name]: e.target.value
+		})
+	}
+
+
+	function addStep() {
+		const intStepNum = parseInt(userInput.stepNumber);
+		const stepData = {
+			recipe_id: addedRecipe,
+			instruction: userInput.instruction,
+			step_num: intStepNum
+		}
+
+		if (stepData.recipe_id && stepData.instruction && stepData.step_num) {
+			addStepToRecipe(stepData)
+		} else {
+			console.log("Please enter step number and step instruction")
+		}
+
+		setUserInput({
+			stepNumber: "",
+			instruction: ""
+		})
+	}
 
 	return (
 		<div className="container">
@@ -21,6 +51,8 @@ function AddSteps() {
 							name="stepNumber"
 							id="stepNumber"
 							placeholder="Enter step number"
+							onChange={handleChange}
+							value={userInput.stepNumber}
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -29,9 +61,11 @@ function AddSteps() {
 							type="textarea"
 							name="instruction"
 							id="instruction"
+							onChange={handleChange}
+							value={userInput.instruction}
 						/>
 					</FormGroup>
-					<Button>Add</Button>
+					<Button onClick={addStep}>Add</Button>
 				</Form>
 			</section>
 
@@ -44,4 +78,13 @@ function AddSteps() {
 	)
 }
 
-export default AddSteps;
+function mapStateToProps(state) {
+	return {
+		isAddingStep: state.stepReducer.isAddingStep,
+		addedStep: state.stepReducer.addedStep,
+		error: state.stepReducer.error,
+		addedRecipe: state.recipesReducer.addedRecipe
+	}
+}
+
+export default connect(mapStateToProps, { addStepToRecipe })(AddSteps);
