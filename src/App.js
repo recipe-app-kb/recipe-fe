@@ -18,10 +18,10 @@ import AddSteps from './components/recipe/AddSteps';
 // Fontawesome icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSave, faList, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faList, faTasks, faTimes } from '@fortawesome/free-solid-svg-icons';
 import AddIngredients from './components/recipe/AddIngredients';
 
-library.add(fab, faSave, faList, faTasks);
+library.add(fab, faSave, faList, faTasks, faTimes);
 
 function App() {
 

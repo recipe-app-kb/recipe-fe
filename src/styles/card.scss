@@ -1,0 +1,13 @@
+.recipe-card {
+	.icons {
+		position: absolute;
+		top     : 1.25rem;
+		right   : 1.25rem;
+		color   : #cecece;
+
+		&:hover {
+			color : #DC143C;
+			cursor: pointer;
+		}
+	}
+}
