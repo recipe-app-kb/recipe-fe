@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function Login(props) {
 
-	const { loginUser } = props;
+	const { loginUser, loggedIn, isLoggingIn } = props;
 
 	const [userInput, setUserInput] = useState({
 		username: '',
@@ -32,9 +32,9 @@ function Login(props) {
 		});
 	}
 
-	// if (loggedIn) {
-	//    return <Redirect to="/recipes" />;
-	// }
+	if (!isLoggingIn && loggedIn) {
+		props.history.push('/recipes')
+	}
 
 	return (
 		<>
@@ -66,7 +66,6 @@ function Login(props) {
 								/>
 							</FormGroup>
 							<Button color="primary">Login</Button>
-							{/* <Button color="secondary" onClick={redirect}>Register</Button> */}
 							<Link to="/register">Don't have an account?</Link>
 						</Form>
 					</div>
