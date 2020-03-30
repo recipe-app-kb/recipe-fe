@@ -8,7 +8,10 @@ import {
 	FETCH_RECIPE_DETAILS_FAIL,
 	ADD_RECIPE_START,
 	ADD_RECIPE_SUCCESS,
-	ADD_RECIPE_FAIL
+	ADD_RECIPE_FAIL,
+	DELETE_RECIPE_START,
+	DELETE_RECIPE_SUCCESS,
+	DELETE_RECIPE_FAIL
 } from './types';
 
 
@@ -67,5 +70,19 @@ export const addRecipe = (userId, recipeData) => dispatch => {
 		})
 		.catch(err => {
 			dispatch({ type: ADD_RECIPE_FAIL, payload: err })
+		})
+}
+
+// Delete recipe
+export const deleteRecipe = (recipeId) => dispatch => {
+	dispatch({ type: DELETE_RECIPE_START })
+
+	axiosWithAuth().delete(`http://localhost:5000/api/recipes/${recipeId}`)
+		.then(res => {
+			console.log(res)
+			dispatch({ type: DELETE_RECIPE_SUCCESS, payload: { count: res.data, deletedRecipeId: recipeId } })
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_RECIPE_FAIL, payload: err })
 		})
 }
