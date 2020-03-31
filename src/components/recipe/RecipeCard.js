@@ -23,7 +23,7 @@ function RecipeCard(props) {
 				</CardBody>
 				<CardBody className="card-links">
 					<Link to={`/recipe/${recipe.id}/details`}>Details</Link>
-					{/* <Link>Edit</Link> */}
+					<Link to={`/recipe/${recipe.id}/edit`}>Edit</Link>
 				</CardBody>
 			</Card>
 		</>

@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 // Components
 import Home from './components/home/Home';
 import RecipeList from './components/recipe/RecipeList';
-import EditRecipe from './components/edit/EditRecipe';
+import EditRecipe from './components/recipe/EditRecipe';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/forms/Login';
@@ -31,10 +31,10 @@ function App() {
 			<Route exact path='/' component={Home} />
 			<Route path='/login' component={Login} />
 			<PrivateRoute path='/recipes' component={RecipeList} />
-			<Route path='/edit' component={EditRecipe} />
 			<Route path='/register' component={Register} />
 			<Route path='/add-recipe' component={AddRecipe} />
 			<PrivateRoute path='/recipe/:id/details' component={RecipeDetails} />
+			<PrivateRoute path='/recipe/:id/edit' component={EditRecipe} />
 			<PrivateRoute path='/add-ingredients' component={AddIngredients} />
 			<PrivateRoute path='/add-steps' component={AddSteps} />
 			<Footer />

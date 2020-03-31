@@ -11,7 +11,10 @@ import {
 	ADD_RECIPE_FAIL,
 	DELETE_RECIPE_START,
 	DELETE_RECIPE_SUCCESS,
-	DELETE_RECIPE_FAIL
+	DELETE_RECIPE_FAIL,
+	UPDATE_RECIPE_INFO_START,
+	UPDATE_RECIPE_INFO_SUCCESS,
+	UPDATE_RECIPE_INFO_FAIL
 } from './types';
 
 
@@ -84,5 +87,19 @@ export const deleteRecipe = (recipeId) => dispatch => {
 		})
 		.catch(err => {
 			dispatch({ type: DELETE_RECIPE_FAIL, payload: err })
+		})
+}
+
+// Update recipe info
+export const updateRecipeInfo = (recipeId, updates) => dispatch => {
+	dispatch({ type: UPDATE_RECIPE_INFO_START })
+
+	axiosWithAuth().put(`http://localhost:5000/api/recipes/${recipeId}`, updates)
+		.then(res => {
+			// console.log(res.data)
+			dispatch({ type: UPDATE_RECIPE_INFO_SUCCESS, payload: res.data })
+		})
+		.catch(err => {
+			dispatch({ type: UPDATE_RECIPE_INFO_FAIL, payload: err })
 		})
 }

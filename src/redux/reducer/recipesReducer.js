@@ -10,7 +10,10 @@ import {
 	ADD_RECIPE_FAIL,
 	DELETE_RECIPE_START,
 	DELETE_RECIPE_SUCCESS,
-	DELETE_RECIPE_FAIL
+	DELETE_RECIPE_FAIL,
+	UPDATE_RECIPE_INFO_START,
+	UPDATE_RECIPE_INFO_SUCCESS,
+	UPDATE_RECIPE_INFO_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -21,7 +24,9 @@ const initialState = {
 	addedRecipe: false,
 	isAdding: false,
 	isDeleting: false,
-	isDeleted: false
+	isDeleted: false,
+	isUpdating: false,
+	isUpdated: false,
 }
 
 function recipesReducer(state = initialState, action) {
@@ -50,6 +55,7 @@ function recipesReducer(state = initialState, action) {
 			return {
 				...state,
 				isFetching: true,
+				recipeDetails: null,
 				error: null
 			}
 		case FETCH_RECIPE_DETAILS_SUCCESS:
@@ -98,7 +104,7 @@ function recipesReducer(state = initialState, action) {
 				isDeleting: false,
 				isDeleted: true,
 				recipes: state.recipes.filter(recipe => {
-					return recipe.id != action.payload.deletedRecipeId
+					return recipe.id !== action.payload.deletedRecipeId
 				}),
 				error: null
 			}
@@ -108,6 +114,27 @@ function recipesReducer(state = initialState, action) {
 				isDeleting: false,
 				isDeleted: false,
 				error: null
+			}
+		case UPDATE_RECIPE_INFO_START:
+			return {
+				...state,
+				isUpdating: true,
+				isUpdated: false,
+				error: null
+			}
+		case UPDATE_RECIPE_INFO_SUCCESS:
+			return {
+				...state,
+				isUpdating: false,
+				isUpdated: true,
+				error: null
+			}
+		case UPDATE_RECIPE_INFO_FAIL:
+			return {
+				...state,
+				isUpdating: false,
+				isUpdated: false,
+				error: action.payload
 			}
 		default:
 			return state;

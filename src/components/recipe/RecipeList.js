@@ -25,7 +25,7 @@ function RecipeList(props) {
 				<div className="container">
 					<h1>Your Recipes</h1>
 					<Button color="success" onClick={toAddRecipe}>Add Recipe</Button>
-					<div className="recipes-wrapper" style={{margin: "20px auto"}}>
+					<div className="recipes-wrapper" style={{ margin: "20px auto" }}>
 						<Row>
 							{recipes.length === 0 ? <p>You have no recipes yet...</p> :
 								recipes.map(recipe => (
