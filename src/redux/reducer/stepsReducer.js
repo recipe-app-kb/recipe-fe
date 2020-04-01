@@ -1,4 +1,4 @@
-import { ADD_STEP_TO_RECIPE_START, ADD_STEP_TO_RECIPE_SUCCESS, ADD_STEP_TO_RECIPE_FAIL, ADD_INGREDIENT_TO_RECIPE_START } from '../actions/types';
+import { ADD_STEP_TO_RECIPE_START, ADD_STEP_TO_RECIPE_SUCCESS, ADD_STEP_TO_RECIPE_FAIL, EDIT_STEPS_START, EDIT_STEPS_SUCCESS, EDIT_STEPS_FAIL } from '../actions/types';
 
 const initialState = {
 	isAddingStep: false,
@@ -8,7 +8,7 @@ const initialState = {
 
 const stepReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ADD_INGREDIENT_TO_RECIPE_START:
+		case ADD_STEP_TO_RECIPE_START:
 			return {
 				isAddingStep: true,
 				error: null

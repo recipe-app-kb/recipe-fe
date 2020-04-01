@@ -17,10 +17,6 @@ function RecipeDetails(props) {
 		fetchRecipeDetails(id);
 	}, [])
 
-	function goBack() {
-		props.history.push('/recipes');
-	}
-
 	return (
 		<div>
 			<div className="container">
@@ -29,7 +25,7 @@ function RecipeDetails(props) {
 					<div className="recipe-details">
 						<Button
 							outline
-							onClick={goBack}
+							onClick={() => { props.history.push('/recipes'); }}
 						>Go Back</Button>
 						<section>
 							<h1>{recipeDetails.title}</h1>

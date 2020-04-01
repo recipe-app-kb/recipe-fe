@@ -26,6 +26,7 @@ function EditRecipeInfo(props) {
 	return (
 		<div className="detail-form">
 			<div className="container">
+				<h3>Edit Information</h3>
 				<Form onSubmit={handleSave}>
 					<FormGroup>
 						<Label for="title">Title:</Label>
