@@ -5,27 +5,22 @@ import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId } from
 
 function AddIngredients(props) {
 
-	const { getIngredients,
-		ingredients,
-		isFetching,
-		addedRecipe,
-		addIngredientsToRecipe,
-		getIngredientsByRecipeId,
-		added,
-		addedIngredients
-	} = props;
+	const { getIngredients, ingredients, isFetching, addedRecipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients } = props;
+
 	const [search, setSearch] = useState('');
 	const [filteredIngredients, setFilteredIngredients] = useState([]);
 
-
+	// Load all ingredients on load
 	useEffect(() => {
 		getIngredients();
 	}, [])
 
+	// Save ingredients locally for searching
 	useEffect(() => {
 		setFilteredIngredients(ingredients);
 	}, [ingredients])
 
+	// Search ingredients on search change
 	useEffect(() => {
 		setFilteredIngredients(
 			ingredients.filter((ingredient) => {
@@ -34,15 +29,18 @@ function AddIngredients(props) {
 		);
 	}, [search])
 
+	// Keep track of added ingredients
 	useEffect(() => {
 		getIngredientsByRecipeId(addedRecipe);
-		console.log("Added ingredient", addedIngredients);
+		// console.log("Added ingredient", addedIngredients);
 	}, [added])
 
+	// Handle change
 	function handleChange(e) {
 		setSearch(e.target.value)
 	}
 
+	// Add ingredients to recipe
 	function AddIngredientToRecipe(ingredient) {
 		const data = {
 			"recipe_id": addedRecipe,
@@ -80,10 +78,11 @@ function AddIngredients(props) {
 						</ul>
 					</div>
 				</section>
+
+				{/* Display ingredients added to recipe */}
 				<section>
 					<h2>Included ingredients</h2>
 					<div>
-
 						{addedIngredients.length > 0 ?
 							(<div className="recipe-ingredients wrapper">
 								{addedIngredients.map(ingredient => (
@@ -91,7 +90,6 @@ function AddIngredients(props) {
 								))}
 							</div>) : (<p>No ingredients added yet.</p>)
 						}
-
 					</div>
 				</section>
 				<Button onClick={goToSteps}>Save</Button>

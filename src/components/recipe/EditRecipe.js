@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Spinner } from 'reactstrap';
+import classnames from 'classnames';
 import { fetchRecipeDetails, updateRecipeInfo } from '../../redux/actions/recipe-actions';
 
 // Component
-import RecipeDetailForm from '../forms/RecipeDetailForm';
+import RecipeDetailForm from '../edits/EditRecipeInfo EditRecipeInfo';
 
 function EditRecipe(props) {
 	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdating, isUpdated } = props;
 	const id = props.match.params.id;
+
+	const [activeTab, setActiveTab] = useState('1');
+
+	// Toggle tabs
+	const toggle = tab => {
+		if (activeTab !== tab) setActiveTab(tab);
+	}
 
 	useEffect(() => {
 		fetchRecipeDetails(id)
@@ -18,25 +27,71 @@ function EditRecipe(props) {
 			<div className="edit-wrapper">
 				<div className="container">
 					<h2>Edit Page</h2>
-					<div className="recipe-info">
-						<h3>Information</h3>
-						<RecipeDetailForm
-							recipe={recipe}
-							updateRecipeInfo={updateRecipeInfo}
-							loggedInUser={loggedInUser}
-						/>
-					</div>
-					<div className="recipe-ingredients">
-						<h3>Ingredients</h3>
-					</div>
-					<div className="recipe-steps">
-						<h3>Steps</h3>
-					</div>
+
+					{/* Nav for tabs */}
+					<Nav tabs>
+						<NavItem>
+							<NavLink
+								className={classnames({ active: activeTab === '1' })}
+								onClick={() => { toggle('1'); }}
+							>
+								Recipe Info
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className={classnames({ active: activeTab === '2' })}
+								onClick={() => { toggle('2'); }}
+							>
+								Ingredients
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className={classnames({ active: activeTab === '3' })}
+								onClick={() => { toggle('3'); }}
+							>
+								Steps
+							</NavLink>
+						</NavItem>
+					</Nav>
+
+					{/* Recipe Info section */}
+					<TabContent activeTab={activeTab}>
+						<TabPane tabId="1">
+							<div className="recipe-info">
+								<h3>Information</h3>
+								<RecipeDetailForm
+									recipe={recipe}
+									updateRecipeInfo={updateRecipeInfo}
+									loggedInUser={loggedInUser}
+								/>
+							</div>
+						</TabPane>
+					</TabContent>
+
+					{/* Ingredients tab */}
+					<TabContent activeTab={activeTab}>
+						<TabPane tabId="2">
+							<div className="recipe-ingredients">
+								<h3>Ingredients</h3>
+							</div>
+						</TabPane>
+					</TabContent>
+
+					{/* Steps tab */}
+					<TabContent activeTab={activeTab}>
+						<TabPane tabId="3">
+							<div className="recipe-steps">
+								<h3>Steps</h3>
+							</div>
+						</TabPane>
+					</TabContent>
 				</div>
 			</div>
 		)
 	} else {
-		return (<p>Fetching data</p>)
+		return (<p><Spinner color="primary" />Fetching data...</p>)
 	}
 }
 

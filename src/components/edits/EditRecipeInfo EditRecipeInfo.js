@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-function RecipeDetailForm(props) {
+function EditRecipeInfo(props) {
 	const { recipe, updateRecipeInfo, loggedInUser } = props;
 
 	const [userInput, setUserInput] = useState({
@@ -54,4 +54,4 @@ function RecipeDetailForm(props) {
 	)
 }
 
-export default RecipeDetailForm;
+export default EditRecipeInfo;
