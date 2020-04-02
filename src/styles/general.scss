@@ -1,33 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Londrina+Solid|Raleway&display=swap');
 
 * {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
+	box-sizing: border-box;
+	margin    : 0;
+	padding   : 0;
 }
 
 html {
-   font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-   font-size: 1.6rem;
-   font-family: 'Raleway', sans-serif;
+	font-size  : 1.6rem;
+	font-family: 'Raleway', sans-serif;
 }
 
 // Sticky footer
-html, body, #root {
-   height: 100%;
+html,
+body,
+#root {
+	height: 100%;
 }
 
 .App {
-   display: flex;
-   min-height: 100%;
-   flex-direction: column;
+	display       : flex;
+	min-height    : 100%;
+	flex-direction: column;
 }
 
 footer {
-   margin-top: auto;
+	margin-top: auto;
 }
 
 // End Sticky footer
@@ -37,61 +39,68 @@ h2,
 h3,
 h4,
 h5 {
-   font-family: 'Londrina Solid', cursive;
-   letter-spacing: 0.2rem;
+	font-family   : 'Londrina Solid', cursive;
+	letter-spacing: 0.2rem;
 }
 
 .h1,
 h1 {
-   font-size: 3.6rem;
+	font-size: 3.6rem;
+	color    : $mainColor;
 }
 
 .h2,
 h2 {
-   font-size: 3rem;
+	font-size: 3rem;
+	color    : $accentColor;
 }
 
 .h3,
 h3 {
-   font-size: 2.5rem;
+	font-size: 2.5rem;
 }
 
 .h4,
 h4 {
-   font-size: 2rem;
+	font-size: 2rem;
 }
 
 .h5,
 h5 {
-   font-size: 1.75rem;
+	font-size: 1.75rem;
 }
 
 a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 img {
-   max-width: 100%;
+	max-width: 100%;
 }
 
 p {
-   line-height: 2.5rem;
+	line-height: 2.5rem;
+}
+
+ul,
+ol {
+	list-style-position: inside;
 }
 
 .container {
-   max-width: 1800px;
-   width: 100%;
-   padding: 0 2rem;
-   margin: auto;
+	max-width: 1800px;
+	width    : 100%;
+	padding  : 0 2rem;
+	margin   : auto;
 }
 
 .medium-container {
-   max-width: 1000px;
-   width: 100%;
-   margin: auto;
-   padding: 0 2rem;
+	max-width: 1000px;
+	width    : 100%;
+	margin   : auto;
+	padding  : 0 2rem;
 }
 
 .flex-parent {
-   display: flex;
+	display: flex;
 }

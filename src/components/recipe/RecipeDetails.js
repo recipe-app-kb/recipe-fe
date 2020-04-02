@@ -18,7 +18,7 @@ function RecipeDetails(props) {
 	}, [])
 
 	return (
-		<div>
+		<div className="details-wrapper">
 			<div className="container">
 				{isFetching && <p>Loading recipe...</p>}
 				{recipeDetails && (
@@ -27,37 +27,39 @@ function RecipeDetails(props) {
 							outline
 							onClick={() => { props.history.push('/recipes'); }}
 						>Go Back</Button>
-						<section>
+						<section className="description-wrapper">
 							<h1>{recipeDetails.title}</h1>
 							<p>Description:</p>
 							<p>{recipeDetails.description}</p>
 						</section>
-						<section>
-							<h2>Ingredients</h2>
-							<p>You have 0 / {recipeDetails.ingredients.length} ingredients.</p>
-							<Form>
-								<FormGroup check>
-									{recipeDetails.ingredients.map(ingredient => (
-										<Label check key={ingredient.id} style={{ width: "100%", margin: "5px 0" }}>
-											<Input
-												type="checkbox"
-												name="ingredient"
-												onChange={handleChange}
-												checked={ingredient.has_ingredients}
-											/> <span style={{ marginLeft: "5px" }}>{ingredient.name}</span>
-										</Label>
+						<div className="holder">
+							<section className="ingredient-info">
+								<h2>Ingredients</h2>
+								<p>You have 0 / {recipeDetails.ingredients.length} ingredients.</p>
+								<Form>
+									<FormGroup check>
+										{recipeDetails.ingredients.map(ingredient => (
+											<Label check key={ingredient.id} style={{ width: "100%", margin: "5px 0" }}>
+												<Input
+													type="checkbox"
+													name="ingredient"
+													onChange={handleChange}
+													checked={ingredient.has_ingredients}
+												/> <span style={{ marginLeft: "5px" }}>{ingredient.name}</span>
+											</Label>
+										))}
+									</FormGroup>
+								</Form>
+							</section>
+							<section className="steps-info">
+								<h2>Steps</h2>
+								<ol>
+									{recipeDetails.steps.map(step => (
+										<li key={step.id}>{step.instruction}</li>
 									))}
-								</FormGroup>
-							</Form>
-						</section>
-						<section>
-							<h2>Steps</h2>
-							<ol>
-								{recipeDetails.steps.map(step => (
-									<li key={step.id}>{step.instruction}</li>
-								))}
-							</ol>
-						</section>
+								</ol>
+							</section>
+						</div>
 					</div>
 				)}
 			</div>
