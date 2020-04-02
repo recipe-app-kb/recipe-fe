@@ -54,7 +54,7 @@ function EditIngredients(props) {
 	// }
 
 	return (
-		<div>
+		<div className="ingredient-container">
 			<div className="container">
 				<h3>Edit Ingredients</h3>
 				<section className="ingredients-list">
@@ -86,7 +86,7 @@ function EditIngredients(props) {
 						{addedIngredients.length > 0 ?
 							(<div className="recipe-ingredients wrapper">
 								{addedIngredients.map(ingredient => (
-									<div className="ingredient-item" key={ingredient.id}>{ingredient.name} <Button color="danger">Remove</Button></div>
+									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm">Remove</Button></div>
 								))}
 							</div>) : (<p>No ingredients added yet.</p>)
 						}
