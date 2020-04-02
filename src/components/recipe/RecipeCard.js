@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteRecipe } from '../../redux/actions/recipe-actions';
-import { Card, CardTitle, CardText, CardBody } from 'reactstrap';
+import { Card, CardTitle, CardText, CardBody, CardHeader, CardFooter, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RecipeCard(props) {
@@ -15,16 +15,16 @@ function RecipeCard(props) {
 
 	return (
 		<>
-			<Card body className="recipe-card">
+			<Card className="recipe-card">
 				<div className="icons" onClick={() => handleDelete(recipe.id)}><FontAwesomeIcon icon="times" /></div>
+				<CardHeader>{recipe.title}</CardHeader>
 				<CardBody className="card-titles">
-					<CardTitle>{recipe.title}</CardTitle>
 					<CardText>{recipe.description}</CardText>
+					<Button size="sm"><Link to={`/recipe/${recipe.id}/details`}>Details</Link></Button>
 				</CardBody>
-				<CardBody className="card-links">
-					<Link to={`/recipe/${recipe.id}/details`}>Details</Link>
+				<CardFooter className="card-links">
 					<Link to={`/recipe/${recipe.id}/edit`}>Edit</Link>
-				</CardBody>
+				</CardFooter>
 			</Card>
 		</>
 	)

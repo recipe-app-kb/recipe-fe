@@ -1,13 +1,34 @@
 .recipe-card {
+	margin       : 2rem;
+	border-radius: 0.25rem;
+	@include boxShadow(2px, 2px, 4px, $backdropShadow);
+
 	.icons {
 		position: absolute;
-		top     : 1.25rem;
+		top     : .75rem;
 		right   : 1.25rem;
 		color   : #cecece;
 
 		&:hover {
 			color : #DC143C;
 			cursor: pointer;
+		}
+	}
+
+	a {
+		color       : $accentColor;
+		margin-right: 0.5rem;
+	}
+
+	.card-header {
+		font-size: $cardTitle;
+	}
+
+	.btn {
+		background-color: $mainColor;
+
+		a {
+			color: #fff;
 		}
 	}
 }

@@ -24,7 +24,7 @@ function RecipeList(props) {
 			<div className="recipe-list">
 				<div className="container">
 					<h1>Your Recipes</h1>
-					<Button color="success" onClick={toAddRecipe}>Add Recipe</Button>
+					<Button onClick={toAddRecipe}>Add Recipe</Button>
 					<div className="recipes-wrapper" style={{ margin: "20px auto" }}>
 						<Row>
 							{recipes.length === 0 ? <p>You have no recipes yet...</p> :
