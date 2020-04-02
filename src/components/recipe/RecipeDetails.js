@@ -29,7 +29,6 @@ function RecipeDetails(props) {
 						>Go Back</Button>
 						<section className="description-wrapper">
 							<h1>{recipeDetails.title}</h1>
-							<p>Description:</p>
 							<p>{recipeDetails.description}</p>
 						</section>
 						<div className="holder">
