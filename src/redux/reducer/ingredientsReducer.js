@@ -8,6 +8,9 @@ import {
 	FETCH_ADDED_INGREDIENTS_START,
 	FETCH_ADDED_INGREDIENTS_SUCCESS,
 	FETCH_ADDED_INGREDIENTS_FAIL,
+	DELETE_INGREDIENT_FROM_RECIPE_START,
+	DELETE_INGREDIENT_FROM_RECIPE_SUCCESS,
+	DELETE_INGREDIENT_FROM_RECIPE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +19,9 @@ const initialState = {
 	ingredients: [],
 	isAdding: false,
 	added: false,
-	addedIngredients: []
+	addedIngredients: [],
+	isDeleting: false,
+	isDeleted: false
 }
 
 function ingredientsReducer(state = initialState, action) {
@@ -51,7 +56,7 @@ function ingredientsReducer(state = initialState, action) {
 			return {
 				...state,
 				isAdding: false,
-				added: true,
+				added: !state.added,
 				error: null
 			}
 		case ADD_INGREDIENT_TO_RECIPE_FAIL:
@@ -78,7 +83,27 @@ function ingredientsReducer(state = initialState, action) {
 				addedIngredients: null,
 				error: action.payload
 			}
-
+		case DELETE_INGREDIENT_FROM_RECIPE_START:
+			return {
+				...state,
+				isDeleting: true,
+				error: null,
+				isDeleted: false,
+			}
+		case DELETE_INGREDIENT_FROM_RECIPE_SUCCESS:
+			return {
+				...state,
+				isDeleting: false,
+				isDeleted: !state.isDeleted,
+				error: null,
+			}
+		case DELETE_INGREDIENT_FROM_RECIPE_FAIL:
+			return {
+				...state,
+				isDeleting: false,
+				isDeleted: false,
+				error: action.payload
+			}
 		default:
 			return state;
 	}

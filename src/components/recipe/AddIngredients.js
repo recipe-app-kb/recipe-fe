@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId } from '../../redux/actions/ingredient-actions';
+import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId, removeIngredientFromRecipe } from '../../redux/actions/ingredient-actions';
 
 function AddIngredients(props) {
 
-	const { getIngredients, ingredients, isFetching, addedRecipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients } = props;
+	const { getIngredients, ingredients, isFetching, addedRecipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients, removeIngredientFromRecipe, isDeleted } = props;
 
 	const [search, setSearch] = useState('');
 	const [filteredIngredients, setFilteredIngredients] = useState([]);
@@ -33,7 +33,7 @@ function AddIngredients(props) {
 	useEffect(() => {
 		getIngredientsByRecipeId(addedRecipe);
 		// console.log("Added ingredient", addedIngredients);
-	}, [added])
+	}, [added, isDeleted])
 
 	// Handle change
 	function handleChange(e) {
@@ -46,6 +46,11 @@ function AddIngredients(props) {
 			"recipe_id": addedRecipe,
 		}
 		addIngredientsToRecipe(ingredient.id, data);
+	}
+
+	// Remove ingredient from recipe
+	function handleRemove(ingId, recId) {
+		removeIngredientFromRecipe(ingId, recId)
 	}
 
 	// Save and move on to steps
@@ -86,7 +91,7 @@ function AddIngredients(props) {
 						{addedIngredients.length > 0 ?
 							(<div className="recipe-ingredients wrapper">
 								{addedIngredients.map(ingredient => (
-									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm">Remove</Button></div>
+									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm" onClick={() => handleRemove(ingredient.ingredient_id, addedRecipe)}>Remove</Button></div>
 								))}
 							</div>) : (<p>No ingredients added yet.</p>)
 						}
@@ -105,10 +110,18 @@ function mapStateToProps(state) {
 		ingredients: state.ingredientsReducer.ingredients,
 		addedRecipe: state.recipesReducer.addedRecipe,
 		addedIngredients: state.ingredientsReducer.addedIngredients,
-		added: state.ingredientsReducer.added
+		added: state.ingredientsReducer.added,
+		isDeleting: state.ingredientsReducer.isDeleting,
+		isDeleted: state.ingredientsReducer.isDeleted,
 	}
 }
 
+const mapdispatchtoprops = {
+	getIngredients,
+	addIngredientsToRecipe,
+	getIngredientsByRecipeId,
+	removeIngredientFromRecipe
+}
 export default connect(
-	mapStateToProps, { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId }
+	mapStateToProps, mapdispatchtoprops
 )(AddIngredients);

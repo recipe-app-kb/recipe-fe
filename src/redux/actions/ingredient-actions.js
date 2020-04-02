@@ -8,6 +8,10 @@ import {
 	FETCH_ADDED_INGREDIENTS_START,
 	FETCH_ADDED_INGREDIENTS_SUCCESS,
 	FETCH_ADDED_INGREDIENTS_FAIL,
+	DELETE_INGREDIENT_FROM_RECIPE_START,
+	DELETE_INGREDIENT_FROM_RECIPE_SUCCESS,
+	DELETE_INGREDIENT_FROM_RECIPE_FAIL,
+	DELETE_RECIPE_START,
 } from './types';
 import axios from 'axios';
 
@@ -41,10 +45,22 @@ export const getIngredientsByRecipeId = (id) => dispatch => {
 
 	axios.get(`http://localhost:5000/api/recipes/${id}/ingredients`)
 		.then(res => {
-			console.log(res.data);
+			// console.log(res.data);
 			dispatch({ type: FETCH_ADDED_INGREDIENTS_SUCCESS, payload: res.data });
 		})
 		.catch(err => {
 			dispatch({ type: FETCH_ADDED_INGREDIENTS_FAIL, payload: err });
+		})
+}
+
+export const removeIngredientFromRecipe = (ingredientId, recipeId) => dispatch => {
+	dispatch({ type: DELETE_INGREDIENT_FROM_RECIPE_START })
+
+	axios.delete(`http://localhost:5000/api/ingredients/${ingredientId}/recipe/${recipeId}`)
+		.then(res => {
+			dispatch({ type: DELETE_INGREDIENT_FROM_RECIPE_SUCCESS, payload: { count: res.data, removedIngredientId: ingredientId, removedRecipeId: recipeId } })
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_INGREDIENT_FROM_RECIPE_FAIL, payload: err })
 		})
 }

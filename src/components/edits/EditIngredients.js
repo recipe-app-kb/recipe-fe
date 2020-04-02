@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId } from '../../redux/actions/ingredient-actions';
+import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId, removeIngredientFromRecipe } from '../../redux/actions/ingredient-actions';
 
 function EditIngredients(props) {
 
-	const { getIngredients, ingredients, isFetching, recipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients } = props;
+	const { getIngredients, ingredients, isFetching, recipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients, removeIngredientFromRecipe, isDeleted } = props;
 
 	const [search, setSearch] = useState('');
 	const [filteredIngredients, setFilteredIngredients] = useState([]);
@@ -33,7 +33,7 @@ function EditIngredients(props) {
 	useEffect(() => {
 		getIngredientsByRecipeId(recipe.id);
 		// console.log("Added ingredient", addedIngredients);
-	}, [added])
+	}, [added, isDeleted])
 
 	// Handle change
 	function handleChange(e) {
@@ -46,6 +46,11 @@ function EditIngredients(props) {
 			"recipe_id": recipe.id,
 		}
 		addIngredientsToRecipe(ingredient.id, data);
+	}
+
+	// Remove ingredient from recipe
+	function handleRemove(ingId, recId) {
+		removeIngredientFromRecipe(ingId, recId)
 	}
 
 	// Save and move on to steps
@@ -86,7 +91,7 @@ function EditIngredients(props) {
 						{addedIngredients.length > 0 ?
 							(<div className="recipe-ingredients wrapper">
 								{addedIngredients.map(ingredient => (
-									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm">Remove</Button></div>
+									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm" onClick={() => handleRemove(ingredient.ingredient_id, recipe.id)}>Remove</Button></div>
 								))}
 							</div>) : (<p>No ingredients added yet.</p>)
 						}
@@ -104,10 +109,19 @@ function mapStateToProps(state) {
 		isFetching: state.ingredientsReducer.isFetching,
 		ingredients: state.ingredientsReducer.ingredients,
 		addedIngredients: state.ingredientsReducer.addedIngredients,
-		added: state.ingredientsReducer.added
+		added: state.ingredientsReducer.added,
+		isDeleting: state.ingredientsReducer.isDeleting,
+		isDeleted: state.ingredientsReducer.isDeleted,
 	}
 }
 
+const mapdispatchtoprops = {
+	getIngredients,
+	addIngredientsToRecipe,
+	getIngredientsByRecipeId,
+	removeIngredientFromRecipe
+}
+
 export default connect(
-	mapStateToProps, { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId }
+	mapStateToProps, mapdispatchtoprops
 )(EditIngredients);
