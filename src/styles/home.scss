@@ -1,149 +1,149 @@
 // Main intro area
 .main-intro {
-   background: linear-gradient(90deg, $mainColor 60%, #fff 50%);
+	background: linear-gradient(90deg, $mainColor 60%, #fff 50%);
 }
 
 .main-content {
-   display: grid;
-   grid-template-columns: .25fr repeat(3, 1fr);
-   grid-template-rows: auto;
-   grid-gap: 2rem;
-   padding: 6rem 0;
+	display              : grid;
+	grid-template-columns: .25fr repeat(3, 1fr);
+	grid-template-rows   : auto;
+	grid-gap             : 2rem;
+	padding              : 6rem 0;
 
-   .grid-text {
-      grid-column: 1 / 2;
+	.grid-text {
+		grid-column: 1 / 2;
 
-      h1 {
-         // transform: rotate(90deg);
-         // transform-origin: top;
-         // margin-top: 8rem;
-         // font-size: 5rem;
-         -webkit-writing-mode: vertical-lr;
-         -ms-writing-mode: tb-lr;
-         writing-mode: vertical-lr;
-         font-size: $sideFont;
-         letter-spacing: 1rem;
-         color: rgba(255, 255, 255, 0.4);
-         text-transform: uppercase;
-      }
-   }
+		h1 {
+			// transform: rotate(90deg);
+			// transform-origin: top;
+			// margin-top: 8rem;
+			// font-size: 5rem;
+			-webkit-writing-mode: vertical-lr;
+			-ms-writing-mode    : tb-lr;
+			writing-mode        : vertical-lr;
+			font-size           : $sideFont;
+			letter-spacing      : 1rem;
+			color               : rgba(255, 255, 255, 0.4);
+			text-transform      : uppercase;
+		}
+	}
 
-   .grid-sidebar {
-      grid-column: 2 / 3;
-      color: #fff;
+	.grid-sidebar {
+		grid-column: 2 / 3;
+		color      : #fff;
 
-      h2 {
-         font-size: 3.3rem;
-      }
+		h2 {
+			font-size: 3.3rem;
+		}
 
-      p {
-         padding-top: 2rem;
-         font-size: 2rem;
-      }
-   }
+		p {
+			padding-top: 2rem;
+			font-size  : 2rem;
+		}
+	}
 
-   .grid-img {
-      grid-column: 3 / 5;
-      background: url('../img/home-hero.jpg') center center no-repeat;
-      background-size: cover;
-   }
+	.grid-img {
+		grid-column    : 3 / 5;
+		background     : url('../img/home-hero.jpg') center center no-repeat;
+		background-size: cover;
+	}
 }
 
 
 // Features
 .featured {
-   height: 50rem;
-   display: flex;
-   align-items: center;
+	height     : 50rem;
+	display    : flex;
+	align-items: center;
 
-   h2 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 6rem;
-   }
+	h2 {
+		font-size    : 3rem;
+		text-align   : center;
+		margin-bottom: 6rem;
+	}
 }
 
 .f-grid {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-gap: 4rem;
-   margin-top: 2rem;
+	display              : grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap             : 4rem;
+	margin-top           : 2rem;
 }
 
 .f-box {
-   background-color: $lightAccentColor;
-   position: relative;
-   box-shadow: 0 2px 6px 0 rgba(32, 33, 36, 0.28);
+	background-color: $lightAccentColor;
+	position        : relative;
+	box-shadow      : 0 2px 6px 0 rgba(32, 33, 36, 0.28);
 
-   &::after {
-      content: ' ';
-      background-color: $rgbaBgAccentColor;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 1rem;
-      top: 1rem;
-      z-index: -1;
-   }
+	&::after {
+		content         : ' ';
+		background-color: $rgbaBgAccentColor;
+		position        : absolute;
+		width           : 100%;
+		height          : 100%;
+		left            : 1rem;
+		top             : 1rem;
+		z-index         : -1;
+	}
 
-   .icons {
-      background-color: $accentColor;
-      color: white;
-      position: absolute;
-      top: -2rem;
-      left: -2rem;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      border: 1px solid $accentColor;
-      padding: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      box-shadow: 0 3px 6px 0 $backdropShadow;
-   }
+	.icons {
+		background-color: $accentColor;
+		color           : white;
+		position        : absolute;
+		top             : -2rem;
+		left            : -2rem;
+		width           : 2rem;
+		height          : 2rem;
+		border-radius   : 50%;
+		border          : 1px solid $accentColor;
+		padding         : 3rem;
+		display         : flex;
+		align-items     : center;
+		justify-content : center;
+		font-size       : 2.5rem;
+		box-shadow      : 0 3px 6px 0 $backdropShadow;
+	}
 
-   .img-container {
-      height: 18rem;
-      overflow: hidden;
-   }
+	.img-container {
+		height  : 18rem;
+		overflow: hidden;
+	}
 
-   .content {
-      padding: 1rem;
-   }
+	.content {
+		padding: 1rem;
+	}
 }
 
 // Closing section
 .closing {
-   height: 380px;
-   display: flex;
+	height : 380px;
+	display: flex;
 
-   .c-sides {
-      flex-basis: 50%;
-      position: relative;
+	.c-sides {
+		flex-basis: 50%;
+		position  : relative;
 
-      .c-text {
-         background-color: rgba(0,0,0,0.6);
-         color: #fff;
-         position: absolute;
-         top:0;
-         bottom:0;
-         left: 0;
-         right: 0;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         font-size: 3rem;
-      }
-   }
+		.c-text {
+			background-color: rgba(0, 0, 0, 0.6);
+			color           : #fff;
+			position        : absolute;
+			top             : 0;
+			bottom          : 0;
+			left            : 0;
+			right           : 0;
+			display         : flex;
+			justify-content : center;
+			align-items     : center;
+			font-size       : 3rem;
+		}
+	}
 
-   .img-wrapper {
-      overflow: hidden;
-      height: 100%;
-   }
+	.img-wrapper {
+		overflow: hidden;
+		height  : 100%;
+	}
 
-   img {
-      width:100%;
-   }
+	img {
+		width: 100%;
+	}
 }
