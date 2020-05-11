@@ -60,18 +60,12 @@ function home() {
 				</div>
 			</div>
 			<div className="closing">
-				<div className="c-sides">
-					<div className="img-wrapper">
-						<img src={groceryImg} alt="" />
-					</div>
+				<div className="c-sides c-first">
 					<div className="c-text">
 						<h3>Get prepared.</h3>
 					</div>
 				</div>
-				<div className="c-sides">
-					<div className="img-wrapper">
-						<img src={cookingImg} alt="" />
-					</div>
+				<div className="c-sides c-last">
 					<div className="c-text">
 						<h3>To prepare your meal.</h3>
 					</div>

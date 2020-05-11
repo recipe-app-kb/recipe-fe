@@ -146,6 +146,18 @@
 	height: 350px;
 	display: flex;
 
+	@media (max-width: 600px) {
+		flex-direction: column;
+	}
+	.c-first {
+		background: url("../img/grocery3.jpg") center center no-repeat;
+		background-size: cover;
+	}
+	.c-last {
+		background: url("../img/cooking3.jpg") center center no-repeat;
+		background-size: cover;
+	}
+
 	.c-sides {
 		flex-basis: 50%;
 		position: relative;
@@ -163,14 +175,5 @@
 			align-items: center;
 			font-size: 3rem;
 		}
-	}
-
-	.img-wrapper {
-		overflow: hidden;
-		height: 100%;
-	}
-
-	img {
-		width: 100%;
 	}
 }
