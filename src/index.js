@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import reducer from './redux/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import 'bootstrap/dist/css/bootstrap.min.css';

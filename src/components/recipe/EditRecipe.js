@@ -10,7 +10,7 @@ import EditIngredients from '../edits/EditIngredients';
 import EditSteps from '../edits/EditSteps';
 
 function EditRecipe(props) {
-	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdating, isUpdated, addedStep } = props;
+	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdated, addedStep } = props;
 	const id = props.match.params.id;
 
 	const [activeTab, setActiveTab] = useState('1');

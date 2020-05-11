@@ -1,4 +1,4 @@
-import { ADD_STEP_TO_RECIPE_START, ADD_STEP_TO_RECIPE_SUCCESS, ADD_STEP_TO_RECIPE_FAIL, EDIT_STEPS_START, EDIT_STEPS_SUCCESS, EDIT_STEPS_FAIL } from './types';
+import { ADD_STEP_TO_RECIPE_START, ADD_STEP_TO_RECIPE_SUCCESS, ADD_STEP_TO_RECIPE_FAIL } from './types';
 import axios from 'axios';
 
 export const addStepToRecipe = (data) => dispatch => {

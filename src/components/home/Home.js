@@ -1,6 +1,4 @@
 import React from 'react';
-import cookingImg from '../../img/cooking3.jpg';
-import groceryImg from '../../img/grocery3.jpg';
 import ingredientsImg from '../../img/feature-ingredients.jpg';
 import notesImg from '../../img/feature-notes.jpg';
 import foodImg from '../../img/feature-steak.jpg';

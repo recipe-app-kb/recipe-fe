@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Login(props) {
 
-	const { loginUser, loggedIn, isLoggingIn } = props;
+	const { loginUser, loggedIn } = props;
 
 	const [userInput, setUserInput] = useState({
 		username: '',

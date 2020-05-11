@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteRecipe } from '../../redux/actions/recipe-actions';
-import { Card, CardTitle, CardText, CardBody, CardHeader, CardFooter, Button } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardFooter, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RecipeCard(props) {
