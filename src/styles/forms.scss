@@ -1,19 +1,25 @@
 .form-wrapper {
-   width: 56%;
-   border: 1px solid #2c2c2c;
-   margin: auto;
-   padding: 2rem;
+	width  : 56%;
+	border : 1px solid #2c2c2c;
+	margin : auto;
+	padding: 2rem;
 
-   .btn {
-      margin-right: 1rem;
-   }
+	.btn {
+		margin-right: 1rem;
+	}
 }
 
 // Reactstrap overrides
 .form-control {
-   font-size: 1.6rem;
+	font-size: 1.6rem;
 }
 
 .btn {
-   font-size: 1.6rem;
+	font-size: 1.6rem;
+}
+
+.edit-wrapper {
+	h2 {
+		color: $accentColor;
+	}
 }

@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/actions/user-action';
-
-// Components
 import { Link } from 'react-router-dom';
 
 function Login(props) {
@@ -32,9 +30,11 @@ function Login(props) {
 		});
 	}
 
-	if (!isLoggingIn && loggedIn) {
-		props.history.push('/recipes')
-	}
+	useEffect(() => {
+		if (loggedIn) {
+			props.history.push('/recipes')
+		}
+	}, [loggedIn])
 
 	return (
 		<>
