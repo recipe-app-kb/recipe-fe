@@ -10,7 +10,7 @@ import EditIngredients from '../edits/EditIngredients';
 import EditSteps from '../edits/EditSteps';
 
 function EditRecipe(props) {
-	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdating, isUpdated } = props;
+	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdating, isUpdated, addedStep } = props;
 	const id = props.match.params.id;
 
 	const [activeTab, setActiveTab] = useState('1');
@@ -22,7 +22,7 @@ function EditRecipe(props) {
 
 	useEffect(() => {
 		fetchRecipeDetails(id)
-	}, [isUpdated])
+	}, [isUpdated, addedStep])
 
 	if (recipe && !isFetching) {
 		return (
@@ -104,7 +104,8 @@ function mapStateToProps(state) {
 		isFetching: state.recipesReducer.isFetching,
 		isUpdating: state.recipesReducer.isUpdating,
 		isUpdated: state.recipesReducer.isUpdated,
-		loggedInUser: state.userReducer.loggedInUser
+		loggedInUser: state.userReducer.loggedInUser,
+		addedStep: state.stepsReducer.addedStep
 	}
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStepToRecipe } from '../../redux/actions/step-actions';
@@ -86,9 +86,9 @@ function EditSteps(props) {
 
 function mapStateToProps(state) {
 	return {
-		isAddingStep: state.stepReducer.isAddingStep,
-		addedStep: state.stepReducer.addedStep,
-		error: state.stepReducer.error,
+		isAddingStep: state.stepsReducer.isAddingStep,
+		addedStep: state.stepsReducer.addedStep,
+		error: state.stepsReducer.error,
 		addedRecipe: state.recipesReducer.addedRecipe
 	}
 }

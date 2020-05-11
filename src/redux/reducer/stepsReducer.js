@@ -6,11 +6,12 @@ const initialState = {
 	error: null
 }
 
-const stepReducer = (state = initialState, action) => {
+const stepsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_STEP_TO_RECIPE_START:
 			return {
 				isAddingStep: true,
+				addedStep: false,
 				error: null
 			}
 		case ADD_STEP_TO_RECIPE_SUCCESS:
@@ -30,4 +31,4 @@ const stepReducer = (state = initialState, action) => {
 	}
 }
 
-export default stepReducer;
+export default stepsReducer;

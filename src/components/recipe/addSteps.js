@@ -80,9 +80,9 @@ function AddSteps(props) {
 
 function mapStateToProps(state) {
 	return {
-		isAddingStep: state.stepReducer.isAddingStep,
-		addedStep: state.stepReducer.addedStep,
-		error: state.stepReducer.error,
+		isAddingStep: state.stepsReducer.isAddingStep,
+		addedStep: state.stepsReducer.addedStep,
+		error: state.stepsReducer.error,
 		addedRecipe: state.recipesReducer.addedRecipe
 	}
 }
