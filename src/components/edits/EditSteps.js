@@ -46,7 +46,7 @@ function EditSteps(props) {
 				<div className="current-steps">
 					<ol>
 						{recipe.steps.map(step => (
-							<li key={step.id}>{step.instruction}</li>
+							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm">Remove</Button></li>
 						))}
 					</ol>
 				</div>

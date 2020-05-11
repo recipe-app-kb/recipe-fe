@@ -11,6 +11,7 @@ function RecipeDetails(props) {
 
 	function handleChange(e) {
 		setIsChecked(e.target.checked);
+		console.log("Checked status:", isChecked);
 	}
 
 	useEffect(() => {
@@ -31,6 +32,7 @@ function RecipeDetails(props) {
 							<h1>{recipeDetails.title}</h1>
 							<p>{recipeDetails.description}</p>
 						</section>
+
 						<div className="holder">
 							<section className="ingredient-info">
 								<h2>Ingredients</h2>
@@ -50,6 +52,7 @@ function RecipeDetails(props) {
 									</FormGroup>
 								</Form>
 							</section>
+
 							<section className="steps-info">
 								<h2>Steps</h2>
 								<ol>
@@ -59,6 +62,7 @@ function RecipeDetails(props) {
 								</ol>
 							</section>
 						</div>
+
 					</div>
 				)}
 			</div>
