@@ -1,9 +1,12 @@
 .form-wrapper {
-	width  : 56%;
-	border : 1px solid #2c2c2c;
-	margin : auto;
+	width: 56%;
+	border: 1px solid #2c2c2c;
+	margin: auto;
 	padding: 2rem;
 
+	@media (max-width: 550px) {
+		width: 100%;
+	}
 	.btn {
 		margin-right: 1rem;
 	}
@@ -22,4 +25,8 @@
 	h2 {
 		color: $accentColor;
 	}
+}
+
+.login {
+	padding: 10rem 0;
 }
