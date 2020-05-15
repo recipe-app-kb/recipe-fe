@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/actions/user-action';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,11 @@ function Login(props) {
 		password: ''
 	});
 
+	const [isEmptyInput, setIsEmptyInput] = useState({
+		username: false,
+		password: false,
+	});
+
 	// handle change to inputs
 	const handleChange = (e) => {
 		setUserInput({
@@ -21,13 +26,36 @@ function Login(props) {
 		})
 	}
 
+	// Handle submit
 	const submitForm = (e) => {
 		e.preventDefault();
-		loginUser(userInput);
-		setUserInput({
-			username: '',
-			password: ''
-		});
+
+		if (userInput.username === "") {
+			setIsEmptyInput({
+				...isEmptyInput,
+				username: true
+			});
+
+		}
+		if (userInput.password === "") {
+			setIsEmptyInput({
+				...isEmptyInput,
+				password: true
+			});
+
+		}
+
+		if (userInput.username && userInput.password) {
+			loginUser(userInput);
+			setUserInput({
+				username: '',
+				password: ''
+			});
+			setIsEmptyInput({
+				username: false,
+				password: false
+			})
+		}
 	}
 
 	useEffect(() => {
@@ -52,7 +80,9 @@ function Login(props) {
 									placeholder="Enter your username"
 									value={userInput.username}
 									onChange={handleChange}
+									invalid={isEmptyInput.username}
 								/>
+								<FormFeedback>You must enter a username!</FormFeedback>
 							</FormGroup>
 							<FormGroup>
 								<Label for="password">Password:</Label>
@@ -63,7 +93,9 @@ function Login(props) {
 									placeholder="Enter your password"
 									value={userInput.password}
 									onChange={handleChange}
+									invalid={isEmptyInput.password}
 								/>
+								<FormFeedback>You must enter a password!</FormFeedback>
 							</FormGroup>
 							<Button color="primary">Login</Button>
 							<Link to="/register">Don't have an account?</Link>
