@@ -1,62 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { loginUser } from '../../redux/actions/user-action';
 import { Link } from 'react-router-dom';
+import { Formik, withFormik, useFormik } from 'formik';
+import * as Yup from 'yup';
+import { loginUser } from '../../redux/actions/user-action';
 
 function Login(props) {
-
 	const { loginUser, loggedIn } = props;
-
-	const [userInput, setUserInput] = useState({
-		username: '',
-		password: ''
-	});
-
-	const [isEmptyInput, setIsEmptyInput] = useState({
-		username: false,
-		password: false,
-	});
-
-	// handle change to inputs
-	const handleChange = (e) => {
-		setUserInput({
-			...userInput,
-			[e.target.name]: e.target.value
-		})
-	}
-
-	// Handle submit
-	const submitForm = (e) => {
-		e.preventDefault();
-
-		if (userInput.username === "") {
-			setIsEmptyInput({
-				...isEmptyInput,
-				username: true
-			});
-
-		}
-		if (userInput.password === "") {
-			setIsEmptyInput({
-				...isEmptyInput,
-				password: true
-			});
-
-		}
-
-		if (userInput.username && userInput.password) {
-			loginUser(userInput);
-			setUserInput({
-				username: '',
-				password: ''
-			});
-			setIsEmptyInput({
-				username: false,
-				password: false
-			})
-		}
-	}
 
 	useEffect(() => {
 		if (loggedIn) {
@@ -64,13 +15,24 @@ function Login(props) {
 		}
 	}, [loggedIn])
 
+	const formikLogin = useFormik({
+		initialValues: {
+			username: "",
+			password: ""
+		},
+
+		onSubmit: values => {
+			loginUser(values);
+		}
+	});
+
 	return (
 		<>
 			<div className="login">
 				<div className="container">
 					<div className="form-wrapper">
 						<h1>Log in</h1>
-						<Form onSubmit={submitForm}>
+						<Form onSubmit={formikLogin.handleSubmit}>
 							<FormGroup>
 								<Label for="username">Username:</Label>
 								<Input
@@ -78,11 +40,9 @@ function Login(props) {
 									name="username"
 									id="username"
 									placeholder="Enter your username"
-									value={userInput.username}
-									onChange={handleChange}
-									invalid={isEmptyInput.username}
+									value={formikLogin.values.username}
+									onChange={formikLogin.handleChange}
 								/>
-								<FormFeedback>You must enter a username!</FormFeedback>
 							</FormGroup>
 							<FormGroup>
 								<Label for="password">Password:</Label>
@@ -91,11 +51,9 @@ function Login(props) {
 									name="password"
 									id="password"
 									placeholder="Enter your password"
-									value={userInput.password}
-									onChange={handleChange}
-									invalid={isEmptyInput.password}
+									value={formikLogin.values.password}
+									onChange={formikLogin.handleChange}
 								/>
-								<FormFeedback>You must enter a password!</FormFeedback>
 							</FormGroup>
 							<Button color="primary">Login</Button>
 							<Link to="/register">Don't have an account?</Link>
