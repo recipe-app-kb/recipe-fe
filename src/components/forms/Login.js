@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useFormik, yupToFormErrors } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginUser } from '../../redux/actions/user-action';
 
