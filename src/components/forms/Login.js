@@ -59,7 +59,7 @@ function Login(props) {
 									onChange={formikLogin.handleChange}
 									onBlur={formikLogin.handleBlur}
 								/>
-								{(formikLogin.touched.username && formikLogin.errors.username) ? <div>Username is required</div> : null}
+								{(formikLogin.touched.username && formikLogin.errors.username) ? <div className="error-msg">Username is required!</div> : null}
 							</FormGroup>
 							<FormGroup>
 								<Label for="password">Password:</Label>
@@ -72,9 +72,9 @@ function Login(props) {
 									onChange={formikLogin.handleChange}
 									onBlur={formikLogin.handleBlur}
 								/>
-								{(formikLogin.touched.password && formikLogin.errors.password) ? <div>Password is required</div> : null}
+								{(formikLogin.touched.password && formikLogin.errors.password) ? <div className="error-msg">Password is required!</div> : null}
 							</FormGroup>
-							{error ? <div>Invalid username or password!</div> : null}
+							{error ? <div className="error-msg">Invalid username or password!</div> : null}
 							<Button color="primary" type="submit">Login</Button>
 							<Link to="/register">Don't have an account?</Link>
 						</Form>
