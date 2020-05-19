@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useFormik } from 'formik';
+import { useFormik, yupToFormErrors } from 'formik';
 import * as Yup from 'yup';
 import { loginUser } from '../../redux/actions/user-action';
 
@@ -13,21 +13,7 @@ function Login(props) {
 		if (loggedIn) {
 			props.history.push('/recipes')
 		}
-	}, [loggedIn])
-
-	const validate = values => {
-		const errors = {};
-
-		if (!values.username) {
-			errors.username = "Required";
-		}
-
-		if (!values.password) {
-			errors.password = "Required";
-		}
-
-		return errors;
-	}
+	}, [loggedIn]);
 
 	// Handle form input
 	const formikLogin = useFormik({
@@ -35,7 +21,12 @@ function Login(props) {
 			username: "",
 			password: ""
 		},
-		validate,
+		validationSchema: Yup.object({
+			username: Yup.string()
+				.required("Required"),
+			password: Yup.string()
+				.required("Required")
+		}),
 		onSubmit: values => {
 			loginUser(values);
 		}
