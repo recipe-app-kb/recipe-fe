@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { fetchRecipeDetails, updateRecipeInfo } from '../../redux/actions/recipe-actions';
 
 // Component
-import RecipeDetailForm from '../edits/EditRecipeInfo ';
+import EditRecipeInfo from '../edits/EditRecipeInfo ';
 import EditIngredients from '../edits/EditIngredients';
 import EditSteps from '../edits/EditSteps';
 
@@ -63,7 +63,7 @@ function EditRecipe(props) {
 					<TabContent activeTab={activeTab}>
 						<TabPane tabId="1">
 							<div className="recipe-info">
-								<RecipeDetailForm
+								<EditRecipeInfo
 									recipe={recipe}
 									updateRecipeInfo={updateRecipeInfo}
 									loggedInUser={loggedInUser}

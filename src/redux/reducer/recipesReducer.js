@@ -21,7 +21,7 @@ const initialState = {
 	error: null,
 	recipes: [],
 	recipeDetails: null,
-	addedRecipe: false,
+	addedRecipe: null,
 	isAdding: false,
 	isDeleting: false,
 	isDeleted: false,
@@ -76,6 +76,7 @@ function recipesReducer(state = initialState, action) {
 			return {
 				...state,
 				isAdding: true,
+				addedRecipe: null,
 				error: null
 			}
 		case ADD_RECIPE_SUCCESS:
@@ -88,7 +89,7 @@ function recipesReducer(state = initialState, action) {
 		case ADD_RECIPE_FAIL:
 			return {
 				...state,
-				addedRecipe: false,
+				addedRecipe: null,
 				error: null
 			}
 		case DELETE_RECIPE_START:

@@ -68,7 +68,6 @@ export const addRecipe = (userId, recipeData) => dispatch => {
 
 	axiosWithAuth().post(`http://localhost:5000/api/users/${userId}/recipes`, recipeData)
 		.then(res => {
-
 			dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data[0] })
 		})
 		.catch(err => {
@@ -82,7 +81,6 @@ export const deleteRecipe = (recipeId) => dispatch => {
 
 	axiosWithAuth().delete(`http://localhost:5000/api/recipes/${recipeId}`)
 		.then(res => {
-			console.log(res)
 			dispatch({ type: DELETE_RECIPE_SUCCESS, payload: { count: res.data, deletedRecipeId: recipeId } })
 		})
 		.catch(err => {

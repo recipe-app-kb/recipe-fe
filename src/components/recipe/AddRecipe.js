@@ -5,7 +5,7 @@ import { addRecipe } from '../../redux/actions/recipe-actions';
 
 function AddRecipe(props) {
 
-	const { addRecipe, loggedInUser } = props;
+	const { addRecipe, loggedInUser, isAdding, addedRecipe } = props;
 
 	const [userInput, setUserInput] = useState({
 		'recipe-title': '',
@@ -24,19 +24,18 @@ function AddRecipe(props) {
 
 		if (loggedInUser) {
 			const id = loggedInUser.id;
-			const recipe = {
+			const recipeData = {
 				'user_id': id,
 				'title': userInput['recipe-title'],
 				'description': userInput['description']
 			}
 
-			addRecipe(id, recipe);
+			addRecipe(id, recipeData);
 
 			setUserInput({
 				'recipe-title': '',
 				description: ''
 			});
-			props.history.push('/add-ingredients');
 
 		} else {
 			props.history.push('/login');
@@ -46,6 +45,13 @@ function AddRecipe(props) {
 	// Redirect back to all recipes page
 	function goBack() {
 		props.history.push('/recipes');
+	}
+
+	// BUG!!
+	if (addedRecipe) {
+		console.log(addedRecipe);
+		console.log(`/recipe/${addedRecipe}/edit`);
+		props.history.push(`/recipe/${addedRecipe}/edit`);
 	}
 
 	return (
@@ -77,6 +83,7 @@ function AddRecipe(props) {
 						</FormGroup>
 						<Button color="primary">Submit</Button>
 						<Button color="secondary" onClick={goBack}>Cancel</Button>
+						{isAdding && <p>Adding recipe...</p>}
 					</Form>
 				</div>
 			</div>

@@ -53,11 +53,6 @@ function EditIngredients(props) {
 		removeIngredientFromRecipe(ingId, recId)
 	}
 
-	// Save and move on to steps
-	// function goToSteps() {
-	// Pop up modal to confirm saving...
-	// }
-
 	return (
 		<div className="ingredient-container">
 			<div className="container">
