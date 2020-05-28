@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addRecipe } from '../../redux/actions/recipe-actions';
@@ -47,12 +47,12 @@ function AddRecipe(props) {
 		props.history.push('/recipes');
 	}
 
-	// BUG!!
-	if (addedRecipe) {
-		console.log(addedRecipe);
-		console.log(`/recipe/${addedRecipe}/edit`);
-		props.history.push(`/recipe/${addedRecipe}/edit`);
-	}
+	useEffect(() => {
+		if (addedRecipe) {
+			props.history.push(`/recipe/${addedRecipe}/edit`);
+		}
+	}, [addedRecipe])
+
 
 	return (
 		<div className="add-form">
