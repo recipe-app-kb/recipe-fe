@@ -22,7 +22,7 @@ import {
 export const fetchUserRecipes = (id) => dispatch => {
 	dispatch({ type: FETCH_DATA_START });
 
-	axiosWithAuth().get(`http://localhost:5000/api/users/${id}/recipes`)
+	axiosWithAuth().get(`/users/${id}/recipes`)
 		.then(res => {
 			// console.log(res.data);
 
@@ -45,7 +45,7 @@ export const fetchUserRecipes = (id) => dispatch => {
 export const fetchRecipeDetails = (id) => dispatch => {
 	dispatch({ type: FETCH_RECIPE_DETAILS_START });
 
-	axiosWithAuth().get(`http://localhost:5000/api/recipes/${id}`)
+	axiosWithAuth().get(`/recipes/${id}`)
 		.then(res => {
 
 			dispatch({
@@ -66,7 +66,7 @@ export const addRecipe = (userId, recipeData) => dispatch => {
 
 	dispatch({ type: ADD_RECIPE_START });
 
-	axiosWithAuth().post(`http://localhost:5000/api/users/${userId}/recipes`, recipeData)
+	axiosWithAuth().post(`/users/${userId}/recipes`, recipeData)
 		.then(res => {
 			dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data[0] })
 		})
@@ -79,7 +79,7 @@ export const addRecipe = (userId, recipeData) => dispatch => {
 export const deleteRecipe = (recipeId) => dispatch => {
 	dispatch({ type: DELETE_RECIPE_START })
 
-	axiosWithAuth().delete(`http://localhost:5000/api/recipes/${recipeId}`)
+	axiosWithAuth().delete(`/recipes/${recipeId}`)
 		.then(res => {
 			dispatch({ type: DELETE_RECIPE_SUCCESS, payload: { count: res.data, deletedRecipeId: recipeId } })
 		})
@@ -92,7 +92,7 @@ export const deleteRecipe = (recipeId) => dispatch => {
 export const updateRecipeInfo = (recipeId, updates) => dispatch => {
 	dispatch({ type: UPDATE_RECIPE_INFO_START })
 
-	axiosWithAuth().put(`http://localhost:5000/api/recipes/${recipeId}`, updates)
+	axiosWithAuth().put(`/recipes/${recipeId}`, updates)
 		.then(res => {
 			// console.log(res.data)
 			dispatch({ type: UPDATE_RECIPE_INFO_SUCCESS, payload: res.data })
