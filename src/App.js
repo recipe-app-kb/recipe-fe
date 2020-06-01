@@ -1,6 +1,6 @@
 import React from 'react';
 // import './styles/app.scss';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // Components
 import Home from './components/home/Home';
@@ -18,6 +18,7 @@ import RecipeDetails from './components/recipe/RecipeDetails';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faSave, faList, faTasks, faTimes } from '@fortawesome/free-solid-svg-icons';
+import NotFoundPage from './components/NotFoundPage';
 
 library.add(fab, faSave, faList, faTasks, faTimes);
 
@@ -26,13 +27,17 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<Route exact path='/' component={Home} />
-			<Route path='/login' component={Login} />
-			<PrivateRoute path='/recipes' component={RecipeList} />
-			<Route path='/register' component={Register} />
-			<Route path='/add-recipe' component={AddRecipe} />
-			<PrivateRoute path='/recipe/:id/details' component={RecipeDetails} />
-			<PrivateRoute path='/recipe/:id/edit' component={EditRecipe} />
+			<Switch>
+				<Route exact path='/' component={Home} />
+				<Route path='/login' component={Login} />
+				<PrivateRoute path='/recipes' component={RecipeList} />
+				<Route path='/register' component={Register} />
+				<Route path='/add-recipe' component={AddRecipe} />
+				<PrivateRoute path='/recipe/:id/details' component={RecipeDetails} />
+				<PrivateRoute path='/recipe/:id/edit' component={EditRecipe} />
+				<Route component={NotFoundPage} />
+			</Switch>
+
 			<Footer />
 		</div>
 	)
