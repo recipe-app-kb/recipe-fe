@@ -1,5 +1,7 @@
 .recipe-list {
 	background-color: $generalBackground;
+	display         : flex;
+	flex-grow       : 1;
 
 	button {
 		background-color: $rgbaBgAccentColor;
