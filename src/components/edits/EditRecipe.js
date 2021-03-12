@@ -5,9 +5,9 @@ import classnames from 'classnames';
 import { fetchRecipeDetails, updateRecipeInfo } from '../../redux/actions/recipe-actions';
 
 // Component
-import EditRecipeInfo from '../edits/EditRecipeInfo ';
-import EditIngredients from '../edits/EditIngredients';
-import EditSteps from '../edits/EditSteps';
+import EditRecipeInfo from './EditRecipeInfo ';
+import EditIngredients from './EditIngredients';
+import EditSteps from './EditSteps';
 
 function EditRecipe(props) {
 	const { fetchRecipeDetails, updateRecipeInfo, recipe, isFetching, loggedInUser, isUpdated, addedStep } = props;

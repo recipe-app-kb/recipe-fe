@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Components
 import Home from './components/home/Home';
 import RecipeList from './components/recipe/RecipeList';
-import EditRecipe from './components/recipe/EditRecipe';
+import EditRecipe from './components/edits/EditRecipe';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/forms/Login';
