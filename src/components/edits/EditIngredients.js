@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
+import { sortIngredients } from '../../helpers/helperFunctions';
 import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId, removeIngredientFromRecipe } from '../../redux/actions/ingredient-actions';
 
 function EditIngredients(props) {
@@ -17,7 +18,10 @@ function EditIngredients(props) {
 
 	// Save ingredients locally for searching
 	useEffect(() => {
-		setFilteredIngredients(ingredients);
+		if (ingredients.length > 0) {
+			const ingreds = sortIngredients(ingredients);
+			setFilteredIngredients(ingreds);
+		}
 	}, [ingredients])
 
 	// Search ingredients on search change
@@ -54,7 +58,7 @@ function EditIngredients(props) {
 	}
 
 	return (
-		<div className="ingredient-container">
+		< div className="ingredient-container" >
 			<div className="container">
 				<h3>Edit Ingredients</h3>
 				<section className="ingredients-list">
@@ -103,7 +107,7 @@ function mapStateToProps(state) {
 	return {
 		isFetching: state.ingredientsReducer.isFetching,
 		ingredients: state.ingredientsReducer.ingredients,
-		addedIngredients: state.ingredientsReducer.addedIngredients,
+		addedIngredients: sortIngredients(state.ingredientsReducer.addedIngredients),
 		added: state.ingredientsReducer.added,
 		isDeleting: state.ingredientsReducer.isDeleting,
 		isDeleted: state.ingredientsReducer.isDeleted,
