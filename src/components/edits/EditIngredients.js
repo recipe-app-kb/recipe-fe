@@ -19,8 +19,7 @@ function EditIngredients(props) {
 	// Save ingredients locally for searching
 	useEffect(() => {
 		if (ingredients.length > 0) {
-			const ingreds = sortIngredients(ingredients);
-			setFilteredIngredients(ingreds);
+			setFilteredIngredients(ingredients);
 		}
 	}, [ingredients])
 
@@ -106,7 +105,7 @@ function EditIngredients(props) {
 function mapStateToProps(state) {
 	return {
 		isFetching: state.ingredientsReducer.isFetching,
-		ingredients: state.ingredientsReducer.ingredients,
+		ingredients: sortIngredients(state.ingredientsReducer.ingredients),
 		addedIngredients: sortIngredients(state.ingredientsReducer.addedIngredients),
 		added: state.ingredientsReducer.added,
 		isDeleting: state.ingredientsReducer.isDeleting,
