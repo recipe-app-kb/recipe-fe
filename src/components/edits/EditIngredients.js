@@ -4,6 +4,9 @@ import { Button } from 'reactstrap';
 import { sortIngredients } from '../../helpers/helperFunctions';
 import { getIngredients, addIngredientsToRecipe, getIngredientsByRecipeId, removeIngredientFromRecipe } from '../../redux/actions/ingredient-actions';
 
+import IngredientsList from './IngredientsList';
+import AddedIngredientsList from './AddedIngredientsList';
+
 function EditIngredients(props) {
 
 	const { getIngredients, ingredients, isFetching, recipe, addIngredientsToRecipe, getIngredientsByRecipeId, added, addedIngredients, removeIngredientFromRecipe, isDeleted } = props;
@@ -35,7 +38,6 @@ function EditIngredients(props) {
 	// Keep track of added ingredients
 	useEffect(() => {
 		getIngredientsByRecipeId(recipe.id);
-		// console.log("Added ingredient", addedIngredients);
 	}, [added, isDeleted])
 
 	// Handle change
@@ -44,7 +46,7 @@ function EditIngredients(props) {
 	}
 
 	// Add ingredients to recipe
-	function AddIngredientToRecipe(ingredient) {
+	function addIngredientToRecipe(ingredient) {
 		const data = {
 			"recipe_id": recipe.id,
 		}
@@ -62,6 +64,7 @@ function EditIngredients(props) {
 				<h3>Edit Ingredients</h3>
 				<section className="ingredients-list">
 					<div className="ingredients-block">
+
 						{/* search box to filter out ingredients */}
 						<input
 							type="text"
@@ -73,29 +76,23 @@ function EditIngredients(props) {
 						/>
 
 						{/* List ingredients */}
-						{isFetching && (<p>Loading ingredients...</p>)}
-						<ul>
-							{!isFetching && filteredIngredients.map(ingredient => (
-								<li key={ingredient.id}>{ingredient.name}<Button color="primary" onClick={() => AddIngredientToRecipe(ingredient)}>Add</Button></li>
-							))}
-						</ul>
+						<IngredientsList
+							isFetching={isFetching}
+							filteredIngredients={filteredIngredients}
+							addIngredientToRecipe={addIngredientToRecipe}
+						/>
 					</div>
 				</section>
 
 				{/* Display ingredients added to recipe */}
 				<section>
 					<h2>Included ingredients</h2>
-					<div>
-						{addedIngredients.length > 0 ?
-							(<div className="recipe-ingredients wrapper">
-								{addedIngredients.map(ingredient => (
-									<div className="ingredient-item clearfix" key={ingredient.id}>{ingredient.name} <Button color="danger" size="sm" onClick={() => handleRemove(ingredient.ingredient_id, recipe.id)}>Remove</Button></div>
-								))}
-							</div>) : (<p>No ingredients added yet.</p>)
-						}
-					</div>
+					<AddedIngredientsList
+						addedIngredients={addedIngredients}
+						handleRemove={handleRemove}
+						recipe={recipe}
+					/>
 				</section>
-				{/* <Button onClick={goToSteps}>Save</Button> */}
 			</div>
 		</div >
 	)
