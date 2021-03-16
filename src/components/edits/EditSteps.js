@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { addStepToRecipe } from '../../redux/actions/step-actions';
+import { addStepToRecipe, removeStep } from '../../redux/actions/step-actions';
 
 function EditSteps(props) {
-	const { recipe, addStepToRecipe } = props;
+	const { recipe, addStepToRecipe, removeStep } = props;
 
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
@@ -38,6 +38,10 @@ function EditSteps(props) {
 		})
 	}
 
+	function handleRemoveStep(id) {
+		removeStep(id);
+	}
+
 	return (
 		<div className="eidt-steps">
 			<div className="container">
@@ -46,7 +50,7 @@ function EditSteps(props) {
 				<div className="current-steps">
 					<ol>
 						{recipe.steps.map(step => (
-							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm">Remove</Button></li>
+							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm" onClick={(e) => handleRemoveStep(step.id, e)}>Remove</Button></li>
 						))}
 					</ol>
 				</div>
@@ -93,4 +97,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { addStepToRecipe })(EditSteps);
+export default connect(mapStateToProps, { addStepToRecipe, removeStep })(EditSteps);

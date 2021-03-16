@@ -1,3 +1,4 @@
+import { axiosWithAuth } from '../../protected/axiosWithAuth';
 import {
 	ADD_STEP_TO_RECIPE_START,
 	ADD_STEP_TO_RECIPE_SUCCESS,
@@ -11,7 +12,7 @@ import axios from 'axios';
 export const addStepToRecipe = (data) => dispatch => {
 	dispatch({ type: ADD_STEP_TO_RECIPE_START });
 
-	axios.post("/steps/", data)
+	axiosWithAuth().post("http://localhost:5000/api/steps", data)
 		.then(res => {
 			console.log(res.data)
 			dispatch({ type: ADD_STEP_TO_RECIPE_SUCCESS })
@@ -24,7 +25,7 @@ export const addStepToRecipe = (data) => dispatch => {
 export const removeStep = (id) => dispatch => {
 	dispatch({ type: REMOVE_STEP_START });
 
-	axios.delete(`/${id}`)
+	axios.delete(`http://localhost:5000/api/steps/${id}`)
 		.then(res => {
 			console.log(res);
 			dispatch({ type: REMOVE_STEP_SUCCESS });
