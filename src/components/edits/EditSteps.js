@@ -54,7 +54,7 @@ function EditSteps(props) {
 				{/* Steps */}
 				<div className="current-steps">
 					<ol>
-						{(!isFetchingSteps) && steps.map(step => (
+						{steps.map(step => (
 							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm" onClick={(e) => handleRemoveStep(step.id, e)}>Remove</Button></li>
 						))}
 					</ol>
@@ -96,9 +96,7 @@ function EditSteps(props) {
 function mapStateToProps(state) {
 	return {
 		isAddingStep: state.stepsReducer.isAddingStep,
-		addedStep: state.stepsReducer.addedStep,
 		error: state.stepsReducer.error,
-		addedRecipe: state.recipesReducer.addedRecipe,
 		isFetchingSteps: state.stepsReducer.isFetchingSteps,
 		steps: state.stepsReducer.steps,
 	}
