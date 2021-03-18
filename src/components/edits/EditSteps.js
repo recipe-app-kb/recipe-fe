@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { addStepToRecipe, removeStep } from '../../redux/actions/step-actions';
+import { addStepToRecipe, removeStep, fetchStepsForRecipe } from '../../redux/actions/step-actions';
 
 function EditSteps(props) {
-	const { recipe, addStepToRecipe, removeStep } = props;
+	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe } = props;
 
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
 		instruction: ""
 	})
+
+	useEffect(() => {
+		fetchStepsForRecipe(recipe.id);
+	}, []);
 
 	function handleChange(e) {
 		setUserInput({
@@ -17,6 +21,9 @@ function EditSteps(props) {
 			[e.target.name]: e.target.value
 		})
 	}
+
+	// There is something weird going on when adding and removing step. looks to be refreshing. can't really tell yet.
+	// Probably need to fetch steps and work on that globally.
 
 	function addStep() {
 		const intStepNum = parseInt(userInput.stepNumber);
@@ -97,4 +104,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { addStepToRecipe, removeStep })(EditSteps);
+export default connect(mapStateToProps, { addStepToRecipe, removeStep, fetchStepsForRecipe })(EditSteps);

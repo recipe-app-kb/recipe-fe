@@ -6,8 +6,24 @@ import {
 	REMOVE_STEP_START,
 	REMOVE_STEP_SUCCESS,
 	REMOVE_STEP_FAIL,
+	FETCH_STEPS_START,
+	FETCH_STEPS_SUCCESS,
+	FETCH_STEPS_FAIL,
 } from './types';
 import axios from 'axios';
+
+export const fetchStepsForRecipe = (id) => dispatch => {
+	dispatch({ type: FETCH_STEPS_START });
+
+	axios.get(`http://localhost:5000/api/steps/${id}`)
+		.then(res => {
+			console.log(res.data);
+
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_STEPS_FAIL, payload: err });
+		})
+}
 
 export const addStepToRecipe = (data) => dispatch => {
 	dispatch({ type: ADD_STEP_TO_RECIPE_START });
