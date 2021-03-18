@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStepToRecipe, removeStep, fetchStepsForRecipe } from '../../redux/actions/step-actions';
 
 function EditSteps(props) {
-	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe } = props;
+	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, isFetchingSteps, steps } = props;
 
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
@@ -22,9 +22,7 @@ function EditSteps(props) {
 		})
 	}
 
-	// There is something weird going on when adding and removing step. looks to be refreshing. can't really tell yet.
-	// Probably need to fetch steps and work on that globally.
-
+	// Problem when adding a step.
 	function addStep() {
 		const intStepNum = parseInt(userInput.stepNumber);
 		const stepData = {
@@ -34,7 +32,7 @@ function EditSteps(props) {
 		}
 
 		if (stepData.recipe_id && stepData.instruction && stepData.step_num) {
-			addStepToRecipe(stepData)
+			addStepToRecipe(stepData);
 		} else {
 			console.log("Please enter step number and step instruction")
 		}
@@ -56,7 +54,7 @@ function EditSteps(props) {
 				{/* Steps */}
 				<div className="current-steps">
 					<ol>
-						{recipe.steps.map(step => (
+						{(!isFetchingSteps) && steps.map(step => (
 							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm" onClick={(e) => handleRemoveStep(step.id, e)}>Remove</Button></li>
 						))}
 					</ol>
@@ -100,7 +98,9 @@ function mapStateToProps(state) {
 		isAddingStep: state.stepsReducer.isAddingStep,
 		addedStep: state.stepsReducer.addedStep,
 		error: state.stepsReducer.error,
-		addedRecipe: state.recipesReducer.addedRecipe
+		addedRecipe: state.recipesReducer.addedRecipe,
+		isFetchingSteps: state.stepsReducer.isFetchingSteps,
+		steps: state.stepsReducer.steps,
 	}
 }
 

@@ -5,6 +5,9 @@ import {
 	REMOVE_STEP_START,
 	REMOVE_STEP_SUCCESS,
 	REMOVE_STEP_FAIL,
+	FETCH_STEPS_START,
+	FETCH_STEPS_SUCCESS,
+	FETCH_STEPS_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -12,11 +15,30 @@ const initialState = {
 	addedStep: false,
 	isDeletingStep: false,
 	deletedStep: false,
+	steps: [],
+	isFetchingSteps: false,
 	error: null
 }
 
 const stepsReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case FETCH_STEPS_START:
+			return {
+				isFetchingSteps: true,
+				error: null
+			}
+		case FETCH_STEPS_SUCCESS:
+			return {
+				isFetchingSteps: false,
+				steps: action.payload,
+				error: null
+			}
+		case FETCH_STEPS_FAIL:
+			return {
+				isFetchingSteps: false,
+				steps: [],
+				error: action.payload
+			}
 		case ADD_STEP_TO_RECIPE_START:
 			return {
 				isAddingStep: true,
