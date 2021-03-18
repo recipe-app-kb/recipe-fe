@@ -29,7 +29,12 @@ export const addStepToRecipe = (data) => dispatch => {
 
 	axiosWithAuth().post("http://localhost:5000/api/steps", data)
 		.then(res => {
-			dispatch({ type: ADD_STEP_TO_RECIPE_SUCCESS, payload: res.data });
+			const newStep = {
+				id: res.data[0],
+				...data,
+			}
+
+			dispatch({ type: ADD_STEP_TO_RECIPE_SUCCESS, payload: newStep });
 		})
 		.catch(err => {
 			dispatch({ type: ADD_STEP_TO_RECIPE_FAIL, payload: err });

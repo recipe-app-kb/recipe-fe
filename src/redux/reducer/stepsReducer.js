@@ -49,7 +49,7 @@ const stepsReducer = (state = initialState, action) => {
 			return {
 				isAddingStep: false,
 				isFetchingSteps: false,
-				steps: state.steps,
+				steps: [...state.steps, action.payload],
 				error: null
 			}
 		case ADD_STEP_TO_RECIPE_FAIL:
