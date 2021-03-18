@@ -29,11 +29,10 @@ export const addStepToRecipe = (data) => dispatch => {
 
 	axiosWithAuth().post("http://localhost:5000/api/steps", data)
 		.then(res => {
-			console.log(res.data)
-			dispatch({ type: ADD_STEP_TO_RECIPE_SUCCESS, payload: res.data })
+			dispatch({ type: ADD_STEP_TO_RECIPE_SUCCESS, payload: res.data });
 		})
 		.catch(err => {
-			dispatch({ type: ADD_STEP_TO_RECIPE_FAIL, payload: err })
+			dispatch({ type: ADD_STEP_TO_RECIPE_FAIL, payload: err });
 		})
 }
 
@@ -43,7 +42,7 @@ export const removeStep = (id) => dispatch => {
 	axios.delete(`http://localhost:5000/api/steps/${id}`)
 		.then(res => {
 			console.log(res);
-			dispatch({ type: REMOVE_STEP_SUCCESS });
+			dispatch({ type: REMOVE_STEP_SUCCESS, payload: id });
 		})
 		.catch(err => {
 			dispatch({ type: REMOVE_STEP_FAIL, payload: err });

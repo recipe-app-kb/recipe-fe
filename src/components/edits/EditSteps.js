@@ -9,7 +9,7 @@ function EditSteps(props) {
 	const [userInput, setUserInput] = useState({
 		stepNumber: "",
 		instruction: ""
-	})
+	});
 
 	useEffect(() => {
 		fetchStepsForRecipe(recipe.id);
@@ -23,7 +23,7 @@ function EditSteps(props) {
 	}
 
 	// Problem when adding a step.
-	function addStep() {
+	function handleAddingStep() {
 		const intStepNum = parseInt(userInput.stepNumber);
 		const stepData = {
 			recipe_id: recipe.id,
@@ -85,7 +85,7 @@ function EditSteps(props) {
 								value={userInput.instruction}
 							/>
 						</FormGroup>
-						<Button onClick={addStep}>Add</Button>
+						<Button onClick={handleAddingStep}>Add</Button>
 					</Form>
 				</section>
 			</div>

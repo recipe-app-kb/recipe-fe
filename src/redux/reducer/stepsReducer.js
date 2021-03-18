@@ -12,9 +12,7 @@ import {
 
 const initialState = {
 	isAddingStep: false,
-	addedStep: false,
 	isDeletingStep: false,
-	deletedStep: false,
 	steps: [],
 	isFetchingSteps: false,
 	error: null
@@ -42,37 +40,36 @@ const stepsReducer = (state = initialState, action) => {
 		case ADD_STEP_TO_RECIPE_START:
 			return {
 				isAddingStep: true,
-				addedStep: false,
+				isFetchingSteps: true,
 				error: null
 			}
 		case ADD_STEP_TO_RECIPE_SUCCESS:
 			return {
 				isAddingStep: false,
-				addedStep: true,
+				isFetchingSteps: false,
+				steps: state.steps,
 				error: null
 			}
 		case ADD_STEP_TO_RECIPE_FAIL:
 			return {
 				isAddingStep: false,
-				addedStep: false,
+				isFetchingSteps: false,
 				error: action.payload
 			}
 		case REMOVE_STEP_START:
 			return {
 				isDeletingStep: true,
-				deletedStep: false,
 				error: null
 			}
 		case REMOVE_STEP_SUCCESS:
 			return {
 				isDeletingStep: false,
-				deletedStep: true,
+				steps: state.steps.filter(step => step.id == action.payload),
 				error: null
 			}
 		case REMOVE_STEP_FAIL:
 			return {
 				isDeletingStep: false,
-				deletedStep: false,
 				error: action.payload
 			}
 		default:
