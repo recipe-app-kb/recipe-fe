@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStepToRecipe, removeStep, fetchStepsForRecipe } from '../../redux/actions/step-actions';
+import StepsList from './StepsList';
 
 function EditSteps(props) {
 	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, isFetchingSteps, steps } = props;
@@ -52,13 +53,10 @@ function EditSteps(props) {
 			<div className="container">
 				<h3>Edit Steps</h3>
 				{/* Steps */}
-				<div className="current-steps">
-					<ol>
-						{steps.map(step => (
-							<li key={step.id}>{step.instruction}  <Button color="danger" size="sm" onClick={(e) => handleRemoveStep(step.id, e)}>Remove</Button></li>
-						))}
-					</ol>
-				</div>
+				<StepsList
+					steps={steps}
+					handleRemoveStep={handleRemoveStep}
+				/>
 
 				{/* Add step */}
 				<section className="steps-wrapper">
