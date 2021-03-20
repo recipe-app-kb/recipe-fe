@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StepsList = (props) => {
     const { steps, handleRemoveStep } = props;
@@ -9,7 +10,9 @@ const StepsList = (props) => {
             <div className="current-steps">
                 <ol>
                     {steps.map(step => (
-                        <li key={step.id}>{step.instruction}  <Button color="danger" size="sm" onClick={(e) => handleRemoveStep(step.id, e)}>Remove</Button></li>
+                        <li key={step.id}>{step.instruction}
+                            <FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} />
+                        </li>
                     ))}
                 </ol>
             </div>
