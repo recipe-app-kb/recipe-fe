@@ -1,5 +1,4 @@
 import React from 'react';
-// import './styles/app.scss';
 import { Route, Switch } from 'react-router-dom';
 
 // Components
@@ -17,10 +16,10 @@ import RecipeDetails from './components/recipe/RecipeDetails';
 // Fontawesome icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSave, faList, faTasks, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faList, faTasks, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import NotFoundPage from './components/NotFoundPage';
 
-library.add(fab, faSave, faList, faTasks, faTimes);
+library.add(fab, faSave, faList, faTasks, faTimes, faEdit);
 
 function App() {
 

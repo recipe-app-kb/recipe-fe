@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StepsList = (props) => {
@@ -11,7 +10,8 @@ const StepsList = (props) => {
                 <ol>
                     {steps.map(step => (
                         <li key={step.id}>{step.instruction}
-                            <FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} />
+                            <button><FontAwesomeIcon icon="edit" /></button>
+                            <button><FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} /></button>
                         </li>
                     ))}
                 </ol>
