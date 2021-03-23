@@ -9,9 +9,9 @@ const StepsList = (props) => {
             <div className="current-steps">
                 <ol>
                     {steps.map(step => (
-                        <li key={step.id}>{step.instruction}
-                            <button><FontAwesomeIcon icon="edit" /></button>
-                            <button><FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} /></button>
+                        <li className="step-item" key={step.id}>{step.instruction}
+                            <button className="btn-icon"><FontAwesomeIcon icon="edit" /></button>
+                            <button className="btn-icon"><FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} /></button>
                         </li>
                     ))}
                 </ol>
