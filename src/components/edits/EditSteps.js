@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStepToRecipe, removeStep, fetchStepsForRecipe } from '../../redux/actions/step-actions';
 import StepsList from './StepsList';
+import StepForm from '../forms/StepForm';
 
 function EditSteps(props) {
 	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, isFetchingSteps, steps } = props;
-
-	const [userInput, setUserInput] = useState({
-		stepNumber: "",
-		instruction: ""
-	});
 
 	useEffect(() => {
 		fetchStepsForRecipe(recipe.id);
 	}, []);
 
-	function handleChange(e) {
-		setUserInput({
-			...userInput,
-			[e.target.name]: e.target.value
-		})
-	}
-
-	// Problem when adding a step.
-	function handleAddingStep() {
-		const intStepNum = parseInt(userInput.stepNumber);
+	function handleAddingStep(stepNumber, instruction) {
 		const stepData = {
 			recipe_id: recipe.id,
-			instruction: userInput.instruction,
-			step_num: intStepNum
+			instruction: instruction,
+			step_num: parseInt(stepNumber)
 		}
 
 		if (stepData.recipe_id && stepData.instruction && stepData.step_num) {
@@ -37,11 +23,6 @@ function EditSteps(props) {
 		} else {
 			console.log("Please enter step number and step instruction")
 		}
-
-		setUserInput({
-			stepNumber: "",
-			instruction: ""
-		})
 	}
 
 	function handleRemoveStep(id) {
@@ -59,35 +40,11 @@ function EditSteps(props) {
 				/>
 
 				{/* Add step */}
-				<section className="steps-wrapper">
-					<h3>Add Step</h3>
-					<Form>
-						<FormGroup>
-							<Label for="stepNumber">Step Number</Label>
-							<Input
-								type="number"
-								name="stepNumber"
-								id="stepNumber"
-								placeholder="Enter step number"
-								onChange={handleChange}
-								value={userInput.stepNumber}
-							/>
-						</FormGroup>
-						<FormGroup>
-							<Label for="instruction">Step Instruction</Label>
-							<Input
-								type="textarea"
-								name="instruction"
-								id="instruction"
-								onChange={handleChange}
-								value={userInput.instruction}
-							/>
-						</FormGroup>
-						<Button onClick={handleAddingStep}>Add</Button>
-					</Form>
-				</section>
+				<StepForm
+					handleAddingStep={handleAddingStep}
+				/>
 			</div>
-		</div>
+		</div >
 	)
 }
 
