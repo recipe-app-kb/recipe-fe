@@ -10,8 +10,8 @@ const StepsList = (props) => {
                 <ol>
                     {steps.map(step => (
                         <li className="step-item" key={step.id}>{step.instruction}
-                            <button className="btn-icon"><FontAwesomeIcon icon="edit" /></button>
-                            <button className="btn-icon"><FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} /></button>
+                            <button className="btn-icon step-button"><FontAwesomeIcon icon="edit" /></button>
+                            <button className="btn-icon step-button"><FontAwesomeIcon icon="times" onClick={(e) => handleRemoveStep(step.id, e)} /></button>
                         </li>
                     ))}
                 </ol>
