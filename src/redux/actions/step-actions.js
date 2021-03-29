@@ -9,6 +9,9 @@ import {
 	FETCH_STEPS_START,
 	FETCH_STEPS_SUCCESS,
 	FETCH_STEPS_FAIL,
+	EDIT_STEPS_START,
+	EDIT_STEPS_SUCCESS,
+	EDIT_STEPS_FAIL
 } from './types';
 import axios from 'axios';
 
@@ -51,5 +54,18 @@ export const removeStep = (id) => dispatch => {
 		})
 		.catch(err => {
 			dispatch({ type: REMOVE_STEP_FAIL, payload: err });
+		})
+}
+
+export const updateStep = (stepId, updates) => disptatch => {
+	disptatch({ type: EDIT_STEPS_START });
+
+	axios.put(`http://localhost:5000/api/steps/${stepId}`, updates)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err);
+			disptatch({ type: EDIT_STEPS_FAIL, payload: err });
 		})
 }
