@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const StepForm = (props) => {
-    const { handleAddingStep } = props;
+    const { handleAddingStep, isEditing } = props;
 
     const [userInput, setUserInput] = useState({
         stepNumber: "",
@@ -49,7 +49,7 @@ const StepForm = (props) => {
                     value={userInput.instruction}
                 />
             </FormGroup>
-            <Button>Add</Button>
+            <Button>{isEditing ? "Save" : "Add"}</Button>
         </Form>
     );
 }

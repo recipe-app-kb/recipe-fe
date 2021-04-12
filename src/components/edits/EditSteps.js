@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { addStepToRecipe, removeStep, fetchStepsForRecipe } from '../../redux/actions/step-actions';
-import StepsList from './StepsList';
+import StepsList from '../StepsList';
 import StepForm from '../forms/StepForm';
 
 function EditSteps(props) {
 	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, isFetchingSteps, steps } = props;
+	const [isEditing, setIsEditing] = useState(false);
 
 	useEffect(() => {
 		fetchStepsForRecipe(recipe.id);
@@ -37,11 +38,14 @@ function EditSteps(props) {
 				<StepsList
 					steps={steps}
 					handleRemoveStep={handleRemoveStep}
+					setIsEditing={setIsEditing}
+					isEditing={isEditing}
 				/>
 
 				{/* Add step */}
 				<StepForm
 					handleAddingStep={handleAddingStep}
+					isEditing={isEditing}
 				/>
 			</div>
 		</div >
