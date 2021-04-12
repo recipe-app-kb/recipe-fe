@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const StepForm = (props) => {
-    const { handleAddingStep, isEditing, step, setStep } = props;
+    const { handleAddingStep, isEditing, step, setStep, handleUpdate, clearData } = props;
 
     const [userInput, setUserInput] = useState({
         stepNumber: "",
@@ -25,7 +25,18 @@ const StepForm = (props) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        handleAddingStep(userInput.stepNumber, userInput.instruction);
+
+        if (isEditing) {
+            const updates = {
+                "recipe_id": step.recipe_id,
+                "step_num": parseInt(userInput.stepNumber),
+                "instruction": userInput.instruction,
+            }
+
+            handleUpdate(step.id, updates);
+        } else {
+            handleAddingStep(userInput.stepNumber, userInput.instruction);
+        }
 
         setUserInput({
             stepNumber: "",
@@ -38,7 +49,7 @@ const StepForm = (props) => {
             stepNumber: "",
             instruction: ""
         });
-        setStep({});
+        clearData();
     }
 
     return (

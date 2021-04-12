@@ -62,7 +62,7 @@ export const updateStep = (stepId, updates) => disptatch => {
 
 	axios.put(`http://localhost:5000/api/steps/${stepId}`, updates)
 		.then(res => {
-			console.log(res);
+			disptatch({ type: EDIT_STEPS_SUCCESS, payload: res.data });
 		})
 		.catch(err => {
 			console.log(err);

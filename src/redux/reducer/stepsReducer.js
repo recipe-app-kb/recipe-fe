@@ -8,6 +8,9 @@ import {
 	FETCH_STEPS_START,
 	FETCH_STEPS_SUCCESS,
 	FETCH_STEPS_FAIL,
+	EDIT_STEPS_START,
+	EDIT_STEPS_SUCCESS,
+	EDIT_STEPS_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
 	isDeletingStep: false,
 	steps: [],
 	isFetchingSteps: false,
+	updatedCount: null,
 	error: null
 }
 
@@ -75,6 +79,24 @@ const stepsReducer = (state = initialState, action) => {
 			return {
 				isDeletingStep: false,
 				steps: state.steps,
+				error: action.payload
+			}
+		case EDIT_STEPS_START:
+			return {
+				steps: state.steps,
+				updatedCount: null,
+				error: null
+			}
+		case EDIT_STEPS_SUCCESS:
+			return {
+				steps: state.steps,
+				updatedCount: action.payload,
+				error: null
+			}
+		case EDIT_STEPS_FAIL:
+			return {
+				steps: state.steps,
+				updatedCount: false,
 				error: action.payload
 			}
 		default:
