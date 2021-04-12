@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StepsList = (props) => {
-    const { steps, handleRemoveStep, setIsEditing, isEditing } = props;
+    const { steps, handleRemoveStep, handleEdittingStep } = props;
 
     return (
         <>
@@ -13,7 +13,7 @@ const StepsList = (props) => {
                             <button className="btn-icon step-button">
                                 <FontAwesomeIcon
                                     icon="edit"
-                                    onClick={(e) => setIsEditing(!isEditing)}
+                                    onClick={(e) => handleEdittingStep(step)}
                                 />
                             </button>
                             <button className="btn-icon step-button">
