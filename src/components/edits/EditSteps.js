@@ -5,7 +5,7 @@ import StepsList from '../StepsList';
 import StepForm from '../forms/StepForm';
 
 function EditSteps(props) {
-	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, isFetchingSteps, steps } = props;
+	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, steps } = props;
 	const [isEditing, setIsEditing] = useState(false);
 	const [step, setStep] = useState({});
 
@@ -53,6 +53,7 @@ function EditSteps(props) {
 					handleAddingStep={handleAddingStep}
 					isEditing={isEditing}
 					step={step}
+					setStep={setStep}
 				/>
 			</div>
 		</div >

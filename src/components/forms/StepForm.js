@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const StepForm = (props) => {
-    const { handleAddingStep, isEditing, step } = props;
+    const { handleAddingStep, isEditing, step, setStep } = props;
 
     const [userInput, setUserInput] = useState({
         stepNumber: "",
@@ -33,6 +33,14 @@ const StepForm = (props) => {
         });
     }
 
+    function clearInputs() {
+        setUserInput({
+            stepNumber: "",
+            instruction: ""
+        });
+        setStep({});
+    }
+
     return (
         <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -57,6 +65,7 @@ const StepForm = (props) => {
                 />
             </FormGroup>
             <Button>{isEditing ? "Save" : "Add"}</Button>
+            <Button onClick={clearInputs}>Clear</Button>
         </Form>
     );
 }
