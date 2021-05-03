@@ -11,6 +11,9 @@ import {
 	DELETE_INGREDIENT_FROM_RECIPE_START,
 	DELETE_INGREDIENT_FROM_RECIPE_SUCCESS,
 	DELETE_INGREDIENT_FROM_RECIPE_FAIL,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_START,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_SUCCESS,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_FAIL,
 } from './types';
 import axios from 'axios';
 
@@ -61,5 +64,19 @@ export const removeIngredientFromRecipe = (ingredientId, recipeId) => dispatch =
 		})
 		.catch(err => {
 			dispatch({ type: DELETE_INGREDIENT_FROM_RECIPE_FAIL, payload: err })
+		})
+}
+
+export const toggleHasIngredient = (ingredientId, recipeId, updates) => dispatch => {
+	dispatch({ type: UPDATE_HAS_INGREDIENT_ON_RECIPE_START });
+
+	axios.put(`http://localhost:5000/api/ingredients/${ingredientId}/recipe/${recipeId}`, updates)
+		.then(res => {
+			dispatch({ type: UPDATE_HAS_INGREDIENT_ON_RECIPE_SUCCESS, payload: res.data })
+			console.log(res);
+		})
+		.catch(err => {
+			dispatch({ type: UPDATE_HAS_INGREDIENT_ON_RECIPE_FAIL });
+			console.log("error updating ingredient", err);
 		})
 }

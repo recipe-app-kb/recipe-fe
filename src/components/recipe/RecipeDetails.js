@@ -2,16 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { fetchRecipeDetails } from '../../redux/actions/recipe-actions';
+import { toggleHasIngredient } from '../../redux/actions/ingredient-actions';
 
 function RecipeDetails(props) {
 
-	const { fetchRecipeDetails, recipeDetails, isFetching } = props;
+	const { fetchRecipeDetails, recipeDetails, isFetching, toggleHasIngredient, updatedIngredient } = props;
 	const id = props.match.params.id;
-	const [isChecked, setIsChecked] = useState(false);
 
-	function handleChange(e) {
-		setIsChecked(e.target.checked);
-		console.log("Checked status:", isChecked);
+	function handleChange(idx) {
+		updateHasIngredientAt(idx);
+	}
+
+	function updateHasIngredientAt(indexToChange) {
+		const ingredientData = recipeDetails.ingredients.filter(ingredient => ingredient.ingredient_id === indexToChange)[0];
+
+		const changes = { has_ingredient: !ingredientData.has_ingredient };
+
+		// Need a way to rerender ingredients after update.
+
+		toggleHasIngredient(ingredientData.ingredient_id, recipeDetails.id, changes);
 	}
 
 	useEffect(() => {
@@ -40,12 +49,12 @@ function RecipeDetails(props) {
 								<Form>
 									<FormGroup check>
 										{recipeDetails.ingredients.map(ingredient => (
-											<Label check key={ingredient.id} style={{ width: "100%", margin: "5px 0" }}>
+											<Label check key={ingredient.ingredient_id} style={{ width: "100%", margin: "5px 0" }}>
 												<Input
 													type="checkbox"
 													name="ingredient"
-													onChange={handleChange}
-													checked={ingredient.has_ingredients}
+													onChange={() => handleChange(ingredient.ingredient_id)}
+													checked={ingredient.has_ingredient}
 												/> <span style={{ marginLeft: "5px" }}>{ingredient.name}</span>
 											</Label>
 										))}
@@ -73,8 +82,9 @@ function RecipeDetails(props) {
 function mapStateToProps(state) {
 	return {
 		recipeDetails: state.recipesReducer.recipeDetails,
-		isFetching: state.recipesReducer.isFetching
+		isFetching: state.recipesReducer.isFetching,
+		updatedIngredient: state.ingredientsReducer.updatedIngredient,
 	}
 }
 
-export default connect(mapStateToProps, { fetchRecipeDetails })(RecipeDetails);
+export default connect(mapStateToProps, { fetchRecipeDetails, toggleHasIngredient })(RecipeDetails);

@@ -11,6 +11,9 @@ import {
 	DELETE_INGREDIENT_FROM_RECIPE_START,
 	DELETE_INGREDIENT_FROM_RECIPE_SUCCESS,
 	DELETE_INGREDIENT_FROM_RECIPE_FAIL,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_START,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_SUCCESS,
+	UPDATE_HAS_INGREDIENT_ON_RECIPE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -21,7 +24,8 @@ const initialState = {
 	added: false,
 	addedIngredients: [],
 	isDeleting: false,
-	isDeleted: false
+	isDeleted: false,
+	updatedIngredient: false,
 }
 
 function ingredientsReducer(state = initialState, action) {
@@ -102,6 +106,24 @@ function ingredientsReducer(state = initialState, action) {
 				...state,
 				isDeleting: false,
 				isDeleted: false,
+				error: action.payload
+			}
+		case UPDATE_HAS_INGREDIENT_ON_RECIPE_START:
+			return {
+				...state,
+				updatedIngredient: false,
+				error: null,
+			}
+		case UPDATE_HAS_INGREDIENT_ON_RECIPE_SUCCESS:
+			return {
+				...state,
+				updatedIngredient: !state.updatedIngredient,
+				error: null,
+			}
+		case UPDATE_HAS_INGREDIENT_ON_RECIPE_FAIL:
+			return {
+				...state,
+				updatedIngredient: false,
 				error: action.payload
 			}
 		default:
