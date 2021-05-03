@@ -6,26 +6,49 @@ import { toggleHasIngredient } from '../../redux/actions/ingredient-actions';
 
 function RecipeDetails(props) {
 
-	const { fetchRecipeDetails, recipeDetails, isFetching, toggleHasIngredient, updatedIngredient } = props;
+	const { fetchRecipeDetails, recipeDetails, isFetching, toggleHasIngredient, recipeIngredients } = props;
 	const id = props.match.params.id;
+	const [ingredients, setIngredients] = useState([]);
 
 	function handleChange(idx) {
 		updateHasIngredientAt(idx);
 	}
 
 	function updateHasIngredientAt(indexToChange) {
-		const ingredientData = recipeDetails.ingredients.filter(ingredient => ingredient.ingredient_id === indexToChange)[0];
+		let ingredientData = recipeDetails.ingredients.filter(ingredient => ingredient.ingredient_id === indexToChange)[0];
+		ingredientData = { ...ingredientData, has_ingredient: !ingredientData.has_ingredient };
 
-		const changes = { has_ingredient: !ingredientData.has_ingredient };
+		const changes = { has_ingredient: ingredientData.has_ingredient };
+		toggleHasIngredient(ingredientData.ingredient_id, recipeDetails.id, changes);
 
 		// Need a way to rerender ingredients after update.
+		const updatedIngredients = ingredients.map((ing) => {
+			if (ing.ingredient_id === indexToChange) {
+				ing.has_ingredient = ingredientData.has_ingredient;
+			}
 
-		toggleHasIngredient(ingredientData.ingredient_id, recipeDetails.id, changes);
+			return ing;
+		});
+
+		setIngredients(updatedIngredients);
+	}
+
+	function getNumberOfHaveIngredients() {
+		const haves = ingredients.filter(ingredient => ingredient.has_ingredient === 1 || ingredient.has_ingredient === true);
+
+		return haves.length;
 	}
 
 	useEffect(() => {
 		fetchRecipeDetails(id);
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		if (recipeIngredients) {
+			setIngredients(recipeIngredients);
+			getNumberOfHaveIngredients();
+		}
+	}, [recipeIngredients]);
 
 	return (
 		<div className="details-wrapper">
@@ -45,10 +68,10 @@ function RecipeDetails(props) {
 						<div className="holder">
 							<section className="ingredient-info">
 								<h2>Ingredients</h2>
-								<p>You have 0 / {recipeDetails.ingredients.length} ingredients.</p>
+								<p>You have {getNumberOfHaveIngredients()} / {recipeDetails.ingredients.length} ingredients.</p>
 								<Form>
 									<FormGroup check>
-										{recipeDetails.ingredients.map(ingredient => (
+										{ingredients ? ingredients.map(ingredient => (
 											<Label check key={ingredient.ingredient_id} style={{ width: "100%", margin: "5px 0" }}>
 												<Input
 													type="checkbox"
@@ -57,7 +80,7 @@ function RecipeDetails(props) {
 													checked={ingredient.has_ingredient}
 												/> <span style={{ marginLeft: "5px" }}>{ingredient.name}</span>
 											</Label>
-										))}
+										)) : <p>Loading...</p>}
 									</FormGroup>
 								</Form>
 							</section>
@@ -83,7 +106,7 @@ function mapStateToProps(state) {
 	return {
 		recipeDetails: state.recipesReducer.recipeDetails,
 		isFetching: state.recipesReducer.isFetching,
-		updatedIngredient: state.ingredientsReducer.updatedIngredient,
+		recipeIngredients: state.recipesReducer.recipeDetails ? state.recipesReducer.recipeDetails.ingredients : null,
 	}
 }
 

@@ -73,7 +73,6 @@ export const toggleHasIngredient = (ingredientId, recipeId, updates) => dispatch
 	axios.put(`http://localhost:5000/api/ingredients/${ingredientId}/recipe/${recipeId}`, updates)
 		.then(res => {
 			dispatch({ type: UPDATE_HAS_INGREDIENT_ON_RECIPE_SUCCESS, payload: res.data })
-			console.log(res);
 		})
 		.catch(err => {
 			dispatch({ type: UPDATE_HAS_INGREDIENT_ON_RECIPE_FAIL });
