@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StepsList = (props) => {
-    const { steps, handleRemoveStep, handleEdittingStep } = props;
+    const { steps, handleRemoveStep, handleEdittingStep, isEditing, handleUpdate } = props;
 
     return (
         <>

@@ -56,13 +56,13 @@ function EditSteps(props) {
 					steps={steps}
 					handleRemoveStep={handleRemoveStep}
 					handleEdittingStep={handleEdittingStep}
+					isEditing={isEditing}
+					handleUpdate={handleUpdateStep}
 				/>
 
 				{/* Add step */}
 				<StepForm
 					handleAddingStep={handleAddingStep}
-					handleUpdate={handleUpdateStep}
-					isEditing={isEditing}
 					step={step}
 					setStep={setStep}
 					clearData={clearData}
