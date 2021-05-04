@@ -75,7 +75,7 @@ const StepForm = (props) => {
                     value={userInput.instruction}
                 />
             </FormGroup>
-            <Button>{isEditing ? "Save" : "Add"}</Button>
+            <Button>Save</Button>
             <Button onClick={clearInputs}>Clear</Button>
         </Form>
     );

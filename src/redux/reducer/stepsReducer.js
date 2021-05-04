@@ -72,7 +72,7 @@ const stepsReducer = (state = initialState, action) => {
 		case REMOVE_STEP_SUCCESS:
 			return {
 				isDeletingStep: false,
-				steps: state.steps.filter(step => step.id != action.payload),
+				steps: state.steps.filter(step => step.id !== action.payload),
 				error: null
 			}
 		case REMOVE_STEP_FAIL:
