@@ -11,6 +11,7 @@ const StepsList = (props) => {
                 <ol>
                     {steps.map(step => (
                         <Step
+                            key={step.id}
                             step={step}
                             handleEdittingStep={handleEdittingStep}
                             handleRemoveStep={handleRemoveStep}
