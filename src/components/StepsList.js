@@ -3,7 +3,7 @@ import React from "react";
 import Step from "./recipe/Step";
 
 const StepsList = (props) => {
-    const { steps, handleRemoveStep, handleEdittingStep, isEditing, handleUpdate } = props;
+    const { steps, handleRemoveStep, handleEdittingStep, isEditingStep, handleUpdate } = props;
 
     return (
         <>
@@ -15,6 +15,7 @@ const StepsList = (props) => {
                             step={step}
                             handleEdittingStep={handleEdittingStep}
                             handleRemoveStep={handleRemoveStep}
+                            isEditingStep={isEditingStep}
                         />
                     ))}
                 </ol>

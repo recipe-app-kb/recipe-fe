@@ -6,7 +6,7 @@ import StepForm from '../forms/StepForm';
 
 function EditSteps(props) {
 	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, updateStep, steps, updatedCount } = props;
-	const [isEditing, setIsEditing] = useState(false);
+	const [isEditingStep, setIsEditingStep] = useState(null);
 	const [step, setStep] = useState({});
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ function EditSteps(props) {
 
 	function handleEdittingStep(stepData) {
 		// Need to figure out how to disable other steps while one is being edited.
-		setIsEditing(!isEditing);
+		(isEditingStep !== null) ? clearData() : setIsEditingStep(stepData.id);
 		setStep(stepData);
 	}
 
@@ -43,7 +43,7 @@ function EditSteps(props) {
 	}
 
 	function clearData() {
-		setIsEditing(false);
+		setIsEditingStep(null);
 		setStep({});
 	}
 
@@ -56,7 +56,7 @@ function EditSteps(props) {
 					steps={steps}
 					handleRemoveStep={handleRemoveStep}
 					handleEdittingStep={handleEdittingStep}
-					isEditing={isEditing}
+					isEditingStep={isEditingStep}
 					handleUpdate={handleUpdateStep}
 				/>
 
