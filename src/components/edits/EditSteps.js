@@ -7,7 +7,7 @@ import StepForm from '../forms/StepForm';
 function EditSteps(props) {
 	const { recipe, addStepToRecipe, removeStep, fetchStepsForRecipe, updateStep, steps, updatedCount } = props;
 	const [isEditingStep, setIsEditingStep] = useState(null);
-	const [step, setStep] = useState({});
+	const [step, setStep] = useState({}); // Need to change name of this state.
 
 	useEffect(() => {
 		fetchStepsForRecipe(recipe.id);

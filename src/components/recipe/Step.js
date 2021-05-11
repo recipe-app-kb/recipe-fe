@@ -1,10 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input } from "reactstrap";
 
 const Step = ({ step, handleEdittingStep, isEditingStep, handleRemoveStep }) => {
     return (
         <>
-            <li className="step-item" key={step.id}>{step.instruction}
+            <li className="step-item" key={step.id}>
+                {!isEditingStep
+                    ? step.instruction
+                    : <Input value={step.instruction} />}
                 <button
                     className="btn-icon step-button"
                     onClick={(e) => handleEdittingStep(step)}
