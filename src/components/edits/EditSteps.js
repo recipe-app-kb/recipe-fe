@@ -64,7 +64,6 @@ function EditSteps(props) {
 				<StepForm
 					handleAddingStep={handleAddingStep}
 					step={step}
-					setStep={setStep}
 					clearData={clearData}
 				/>
 			</div>

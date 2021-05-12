@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const StepForm = (props) => {
-    const { handleAddingStep, step, clearData } = props;
+    const { handleAddingStep, clearData } = props;
 
     const [userInput, setUserInput] = useState({
         stepNumber: "",
         instruction: ""
     });
-
-    useEffect(() => {
-        setUserInput({
-            stepNumber: step.step_num ? `${step.step_num}` : "",
-            instruction: step.instruction ? step.instruction : ""
-        });
-    }, [step]);
 
     function handleChange(e) {
         setUserInput({
