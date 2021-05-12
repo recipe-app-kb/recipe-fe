@@ -6,9 +6,10 @@ const Step = ({ step, handleEdittingStep, isEditingStep, handleRemoveStep }) => 
     return (
         <>
             <li className="step-item" key={step.id}>
-                {!isEditingStep
-                    ? step.instruction
-                    : <Input value={step.instruction} />}
+                {(isEditingStep && isEditingStep === step.id)
+                    ? <Input value={step.instruction} />
+                    : step.instruction
+                }
                 <button
                     className="btn-icon step-button"
                     onClick={(e) => handleEdittingStep(step)}
