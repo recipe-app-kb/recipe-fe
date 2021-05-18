@@ -11,7 +11,7 @@ const Step = ({ step, handleEdittingStep, isEditingStep, handleRemoveStep }) => 
                     : step.instruction
                 }
                 {(isEditingStep && isEditingStep === step.id)
-                    ? <button onClick={(e) => handleEdittingStep(step)}>Save</button>
+                    ? <button className="btn-icon step-button" onClick={(e) => handleEdittingStep(step)}><FontAwesomeIcon icon="check" /></button>
                     : <button
                         className="btn-icon step-button"
                         onClick={(e) => handleEdittingStep(step)}

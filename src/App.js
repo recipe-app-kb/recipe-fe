@@ -16,10 +16,10 @@ import RecipeDetails from './components/recipe/RecipeDetails';
 // Fontawesome icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSave, faList, faTasks, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faList, faTasks, faTimes, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 import NotFoundPage from './components/NotFoundPage';
 
-library.add(fab, faSave, faList, faTasks, faTimes, faEdit);
+library.add(fab, faSave, faList, faTasks, faTimes, faEdit, faCheck);
 
 function App() {
 
